@@ -9,6 +9,16 @@ Enjoy :)
 
 ---------------------------------------------------------------
 
+![alt tag](https://cloud.githubusercontent.com/assets/21306877/19058183/f27edea6-89dd-11e6-8020-c6448fcd832c.png)
+
+![alt tag](https://cloud.githubusercontent.com/assets/21306877/19058184/f283806e-89dd-11e6-8323-de7be09cc149.png)
+
+![alt tag](https://cloud.githubusercontent.com/assets/21306877/19058185/f283c376-89dd-11e6-9654-4637dacd1061.png)
+
+![alt tag](https://cloud.githubusercontent.com/assets/21306877/19058186/f287e23a-89dd-11e6-9baa-b153290f41bf.png)
+
+---------------------------------------------------------------
+
 <B><h1>How to use:</h1></B>
 
 1) put all the files in the zip file in the same folder.
