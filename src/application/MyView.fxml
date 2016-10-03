@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.paint.LinearGradient?>
+<?import javafx.scene.paint.RadialGradient?>
+<?import javafx.scene.paint.Stop?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="493.0" prefWidth="660.0" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.MyController">
+	<children>
+      <Separator layoutX="190.0" layoutY="-2.0" orientation="VERTICAL" prefHeight="211.0" />
+		<Pane layoutX="191.0" prefHeight="492.0" prefWidth="467.0">
+			<children>
+				<Label alignment="CENTER" contentDisplay="CENTER" layoutX="14.0" layoutY="7.0" prefHeight="36.0" prefWidth="409.0" text="100% IV - Discord Sniper">
+					<font>
+						<Font name="System Bold" size="25.0" />
+					</font>
+					<textFill>
+						<LinearGradient endX="1.0" endY="1.0" startX="1.0" startY="0.22815533980582525">
+							<stops>
+								<Stop color="#b90f0fd4" />
+								<Stop color="WHITE" offset="1.0" />
+							</stops>
+						</LinearGradient>
+					</textFill>
+				</Label>
+				<Button id="StartBot" fx:id="StartBot" layoutX="3.0" layoutY="100.0" mnemonicParsing="false" onAction="#startTheBot" prefHeight="31.0" prefWidth="343.0" text="Start catching 100% IV pokemon for me!!" />
+				<Button fx:id="MoreInfo" defaultButton="true" layoutX="416.0" layoutY="9.0" mnemonicParsing="false" onAction="#showPopUp" prefHeight="36.0" prefWidth="33.0" rotate="15.0" style="-fx-background-radius: 25px;" text="?" textOverrun="CLIP">
+					<font>
+						<Font name="System Bold" size="15.0" />
+					</font>
+					<opaqueInsets>
+						<Insets top="17.0" />
+					</opaqueInsets>
+				</Button>
+				<Separator layoutY="132.0" prefHeight="8.0" prefWidth="467.0" />
+				<Separator layoutY="47.0" prefHeight="8.0" prefWidth="467.0" />
+				<Label layoutX="16.0" layoutY="63.0" text="Your Discord key:" />
+				<TextField fx:id="token" layoutX="140.0" layoutY="58.0" onKeyReleased="#updateToken" prefHeight="31.0" prefWidth="310.0" />
+				<Separator layoutX="-7.0" layoutY="92.0" prefHeight="8.0" prefWidth="474.0" />
+            <ScrollPane fx:id="ScrollForLog" layoutX="3.0" layoutY="140.0" prefHeight="349.0" prefWidth="461.0">
+               <content>
+                  <VBox fx:id="LogArea" cacheShape="false" centerShape="false" nodeOrientation="LEFT_TO_RIGHT" prefHeight="24.0" prefWidth="383.0" scaleShape="false" />
+               </content>
+            </ScrollPane>
+            <ImageView focusTraversable="true" layoutX="358.0" layoutY="103.0" onMouseClicked="#openPaypalLink" onMousePressed="#openPaypalLink">
+               <image>
+                  <Image url="images/btn_donate_LG.gif" />
+               </image>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </ImageView>
+			</children>
+		</Pane>
+		<ScrollPane layoutY="50.0" prefHeight="443.0" prefViewportHeight="492.0" prefViewportWidth="170.0" prefWidth="191.0">
+			<content>
+				<GridPane fx:id="PokeListGrid" layoutX="710.0" prefHeight="688.0" prefWidth="170.0" style="-fx-padding: 3px;">
+					<columnConstraints>
+						<ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="141.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="76.0" minWidth="10.0" prefWidth="23.0" />
+					</columnConstraints>
+				</GridPane>
+			</content>
+		</ScrollPane>
+      <Label alignment="CENTER" layoutX="1.0" layoutY="7.0" prefHeight="31.0" prefWidth="191.0" text="Pokemons List" textAlignment="CENTER">
+         <font>
+            <Font name="System Bold" size="21.0" />
+         </font>
+         <textFill>
+            <RadialGradient centerX="0.5170454545454546" centerY="0.5" radius="0.5">
+               <stops>
+                  <Stop color="#b90f0fd4" />
+                  <Stop color="BLACK" offset="1.0" />
+               </stops>
+            </RadialGradient>
+         </textFill>
+      </Label>
+	</children>
+</AnchorPane>
