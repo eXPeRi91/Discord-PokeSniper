@@ -1,6 +1,7 @@
 # Discord100IVPokeSniper
 
 How to use:
+
 1) put all the files in the zip file in the same folder.
 
 2) download Pokesniper2 1.12.
