@@ -29,7 +29,8 @@ public class MyController implements Initializable {
 	private Button StartBot;
 	@FXML
 	private GridPane PokeListGrid;
-	private Boolean start = false;
+	private static Boolean start = false;
+
 	@FXML
 	private TextField token;
 	@FXML
@@ -72,19 +73,19 @@ public class MyController implements Initializable {
 			alert.showAndWait();
 			return;
 		}
-		if (!this.start) {
+		if (!MyController.start) {
 			token.setEditable(false);
 			token.setDisable(true);
-			this.start = true;
+			MyController.start = true;
 			StartBot.setText("Starting program, please wait!");
 			StartBot.setDisable(true);
-			DPSUtils.startBot(StartBot);
+			DPSUtils.startBot(StartBot, token);
 		} else {
 			DPSUtils.stopBot();
 			token.setDisable(false);
 			token.setEditable(true);
-			StartBot.setText("Start catching 100% IV pokemon for me!!");
-			this.start = false;
+			StartBot.setText("Start catching 100 IV!");
+			MyController.start = false;
 		}
 	}
 
@@ -125,7 +126,16 @@ public class MyController implements Initializable {
 		alert.setTitle("About");
 		alert.setHeaderText("DiscordPokeSniper " + DPSUtils.getVersion());
 		alert.setContentText(
-				"This program was built by RebliNk17.\nIt is based on DiscordSniper of Candy and PokeSniper2 program.");
+				"This program was built by RebliNk17.\nIt is based on DiscordSniper of CandyBuns and PokeSniper2 program.");
 		alert.showAndWait();
 	}
+	
+	public static Boolean getStart() {
+		return start;
+	}
+
+	public static void setStart(Boolean start) {
+		MyController.start = start;
+	}
+
 }

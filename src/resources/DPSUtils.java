@@ -18,6 +18,7 @@ import entities.AllJsonData;
 import javafx.application.Platform;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.RowConstraints;
 import threads.DiscordConnection;
@@ -25,7 +26,7 @@ import threads.DiscordConnection;
 public class DPSUtils {
 	private static String currentDirectory = null;
 	private static DiscordConnection disCon;
-	private static String version = "v1.0";
+	private static String version = "v1.1";
 	private static Boolean running = false;
 	public static double formatCoords(double coords) {
 		DecimalFormat df = new DecimalFormat("000.00000");
@@ -69,11 +70,11 @@ public class DPSUtils {
 	}
 
 
-	public static void startBot(Button btn) {
+	public static void startBot(Button btn, TextField token) {
 		disableLoggers();
 		setCurrentDirectoryLocation();
 		DPSUtils.log("Starting Program ");
-		disCon = new DiscordConnection(btn);
+		disCon = new DiscordConnection(btn,token);
 		disCon.start();
 	}
 	

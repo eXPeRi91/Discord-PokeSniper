@@ -19,10 +19,8 @@ public class Main extends Application {
 			primaryStage.setScene(scene);
 			primaryStage.setTitle("DiscordPokeSniper " + DPSUtils.getVersion());
 			primaryStage.show();
-			primaryStage.setMinWidth(677.0);        
-			primaryStage.setMinHeight(540.0);
-			primaryStage.setMaxWidth(677.0);        
-			primaryStage.setMaxHeight(540.0);
+			primaryStage.setMinWidth(605.0);        
+			primaryStage.setMinHeight(400.0);
 			primaryStage.setOnCloseRequest(e -> {
 				Platform.exit();
 				System.exit(0);

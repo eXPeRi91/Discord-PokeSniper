@@ -1,0 +1,17 @@
+Manifest-Version: 1.0
+Built-By: Shai Cohen
+Class-Path: dependency-jars/json-simple-1.1.1.jar dependency-jars/juni
+ t-4.10.jar dependency-jars/hamcrest-core-1.1.jar dependency-jars/java
+ cord-2.0.11-shaded.jar dependency-jars/json-20140107.jar dependency-j
+ ars/guava-19.0.jar dependency-jars/unirest-java-1.4.8.jar dependency-
+ jars/httpclient-4.3.6.jar dependency-jars/httpcore-4.3.3.jar dependen
+ cy-jars/commons-logging-1.1.3.jar dependency-jars/commons-codec-1.6.j
+ ar dependency-jars/httpasyncclient-4.0.2.jar dependency-jars/httpcore
+ -nio-4.3.2.jar dependency-jars/httpmime-4.3.6.jar dependency-jars/nv-
+ websocket-client-1.22.jar dependency-jars/slf4j-api-1.7.18.jar depend
+ ency-jars/logback-classic-1.0.13.jar dependency-jars/logback-core-1.0
+ .13.jar dependency-jars/commons-lang-2.6.jar
+Build-Jdk: 1.8.0_101
+Created-By: Maven Integration for Eclipse
+Main-Class: application.Main
+

@@ -4,8 +4,6 @@ import java.io.BufferedReader;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.OutputStream;
-import java.nio.charset.StandardCharsets;
-import java.util.Arrays;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -15,32 +13,20 @@ import entities.AllJsonData;
 import entities.Pokemon;
 
 class SyncPipe implements Runnable {
+	private Boolean flag = false;
 
 	public SyncPipe(InputStream istrm, OutputStream ostrm) {
 		istrm_ = istrm;
-		ostrm_ = ostrm;
+		// ostrm_ = ostrm;
 	}
 
 	public void run() {
-		String pat = "\\[(\\d\\d)\\/(\\d\\d)\\/(\\d\\d\\d\\d) (\\d\\d):(\\d\\d):(\\d\\d)\\] ";
 		try {
 			BufferedReader br = new BufferedReader(new InputStreamReader(istrm_, "UTF-8"));
-			// final byte[] buffer = new byte[1024];
-
 			String str = new String();
 			while ((str = br.readLine()) != null) {
-				// ostrm_.write(str.getBytes(), 0, str.getBytes().length);
-				// System.out.println(str);
 				AnalizeString(str);
 			}
-
-			/*
-			 * for (int length = 0; (length = istrm_.read(buffer)) != -1;) {
-			 * System.out.println(concat(buffer, "").toString());
-			 * //ostrm_.write(buffer, 0, length); }
-			 */
-
-			// System.out.println(str);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -64,6 +50,10 @@ class SyncPipe implements Runnable {
 			for (int x = 0; x < 6 && m.find(); x++) {
 				if (x == 3) {
 					s += "We have " + m.group() + " Pokeballs, ";
+					if (Integer.parseInt(m.group()) == 0) {
+						DPSUtils.stopBot();
+						this.flag=true;
+					}
 				} else if (x == 4) {
 					s += "" + m.group() + " berries, ";
 				} else if (x == 5) {
@@ -72,7 +62,14 @@ class SyncPipe implements Runnable {
 			}
 			DPSUtils.log(s);
 		}
+		if(str.contains("Got into the fight without any Pokeballs")) {
+			flag=true;
+		}
 
+		if(flag==true) {
+			DPSUtils.log("No more Pokeballs left, stoping bot");
+			flag=false;
+		}
 	}
 
 	private Pokemon CheckWhatWasCaught(String str) {
@@ -87,6 +84,6 @@ class SyncPipe implements Runnable {
 		return pokemonType;
 	}
 
-	private final OutputStream ostrm_;
+	// private final OutputStream ostrm_;
 	private final InputStream istrm_;
 }

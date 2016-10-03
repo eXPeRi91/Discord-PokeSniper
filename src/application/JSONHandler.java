@@ -73,7 +73,6 @@ public class JSONHandler {
 			for (Pokemon pokemon : AllJsonData.getPokelist()) {
 				str += pokemon.toJSON();
 			}
-			str += "\t\t{}\n";
 			str += "\t]\n";
 			str += "}";
 			write.write(str);
