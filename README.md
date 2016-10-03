@@ -2,14 +2,21 @@
 
 How to use:
 1) put all the files in the zip file in the same folder.
-2) download Pokesniper2 1.12
-3) edit the pokesniper2 1.12 user.xml file to fit your user details
-4) run discordPokesniper.jar or Start_DiscordPokeSniper.bat
+
+2) download Pokesniper2 1.12.
+
+3) edit the pokesniper2 1.12 user.xml file to fit your user details.
+
+4) run discordPokesniper.jar or Start_DiscordPokeSniper.bat.
+
 the Start_DiscordPokeSniper.bat if for debug only.
+
 you don't have to use it.
+
 5) post your token of discord in the gui window and click the button.
 
 Optional:
+
 you can select which pokemons to catch. (Default: catch all pokemon)
 
 enjoy :)
