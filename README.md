@@ -30,7 +30,6 @@ CHANGES:
 from 1.1.0 -> 1.1.1:
 
 	* add auto stop bot when no more pokeballs left in bag
-	
 	* fix some bugs
 	
 from 1.0.2 -> 1.1.0:
