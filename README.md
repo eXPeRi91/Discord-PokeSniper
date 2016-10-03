@@ -9,7 +9,7 @@ Enjoy :)
 
 ---------------------------------------------------------------
 
-How to use:
+<B><h1>How to use:</h1></B>
 
 1) put all the files in the zip file in the same folder.
 
@@ -35,25 +35,25 @@ enjoy :)
 
 ---------------------------------------------------------------
 
-CHANGES:
+<B><h1>CHANGES:</h1></B>
 
-from 1.1.0 -> 1.1.1:
+<B>from v1.1.0 to v1.1.1:</B>
 
 	* add auto stop bot when no more pokeballs left in bag
 	* fix some bugs
 ---------------------------------------------------------------
-from 1.0.2 -> 1.1.0:
+<B>from v1.0.2 to v1.1.0:</B>
 
 	* GUI is now dynamic - resizeable window!
 	* fixed connection didn't success with token but still said "success"
 	* fix Candybuns name
 ---------------------------------------------------------------
-from 1.0.1 -> 1.0.2:
+<B>from v1.0.1 to v1.0.2:</B>
 
 	* fix bat file
 	* rename jar file
 ---------------------------------------------------------------
-from 1.0.0 -> 1.0.1:
+<B>from v1.0.0 to v1.0.1:</B>
 
 	* Delete 10MB of garbage
 	* fix empty token still tring to connect
