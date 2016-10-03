@@ -31,23 +31,17 @@ from 1.1.0 -> 1.1.1:
 
 	* add auto stop bot when no more pokeballs left in bag
 	* fix some bugs
-	
 from 1.0.2 -> 1.1.0:
 
 	* GUI is now dynamic - resizeable window!
-	
 	* fixed connection didn't success with token but still said "success"
-	
 	* fix Candybuns name
 	
 from 1.0.1 -> 1.0.2:
 
 	* fix bat file
-	
 	* rename jar file
-	
 from 1.0.0 -> 1.0.1:
 
 	* Delete 10MB of garbage
-	
 	* fix empty token still tring to connect
