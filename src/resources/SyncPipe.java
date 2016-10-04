@@ -12,9 +12,8 @@ import org.apache.commons.lang.StringUtils;
 import entities.AllJsonData;
 import entities.Pokemon;
 
-class SyncPipe implements Runnable {
+public class SyncPipe implements Runnable {
 	private Boolean flag = false;
-
 	public SyncPipe(InputStream istrm, OutputStream ostrm) {
 		istrm_ = istrm;
 		// ostrm_ = ostrm;

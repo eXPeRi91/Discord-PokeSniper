@@ -44,9 +44,8 @@ public class PokeLocation {
 	public static PokeLocation parsePokemonNotificationString(String notificationString) {
 		if (StringUtils.containsIgnoreCase(notificationString, "DSP"))
 			return null;
-		//System.out.println(notificationString);
 		// Find Lat/Long from string
-		Pattern pattern = Pattern.compile("(-?\\d+\\.\\d+)");
+		Pattern pattern = Pattern.compile("(-?\\d+\\.\\d{5,})"); // at least 5 digits after the dot.
 		Matcher matcher = pattern.matcher(notificationString);
 		String[] locations = new String[2];
 		int doublesFound = 0;
@@ -58,8 +57,8 @@ public class PokeLocation {
 		}
 		if (doublesFound < 2)
 			return null;
-		double latitude = Double.parseDouble(locations[0]);
-		double longitude = Double.parseDouble(locations[1]);
+		double latitude = DPSUtils.formatCoords(Double.parseDouble(locations[0]));
+		double longitude = DPSUtils.formatCoords(Double.parseDouble(locations[1]));
 		// Check if Lat/Long found is valid
 		if (latitude > 90 || latitude < -90 || longitude > 180 || longitude < -180)
 			return null;
@@ -101,8 +100,6 @@ public class PokeLocation {
 		for (x = 0; x < temp.length - 1 && temp.length >= 2; x++) {
 			int a = temp[x], b = temp[x + 1];
 			if (a == 55357 && b == 56495) {
-				// String s = str.substring(x);
-				// if(s.contains(" IV"))
 				return true;
 			}
 		}
