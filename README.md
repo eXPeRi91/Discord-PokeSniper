@@ -1,4 +1,4 @@
-# Discord PokeSniper
+# Discord PokeSniper v1.2.0
 <B>Discord PokeSniper</B> is a bot that based on the <B><i>Discord 100IV auto Sniper</i></B> of <B>CandyBuns</B> and inspired by it.
 
 Lots of the code of <B>CandyBuns</B> has been changed by me, and a lot more code has been added by me.
@@ -54,6 +54,16 @@ you can select which pokemons to catch. (Default: catch all pokemon)
 ---------------------------------------------------------------
 
 <B><h1>CHANGES:</h1></B>
+from v1.1.4 to 1.2.0:
+
+	* add Select all / Deselect all
+	* now shows how many pokemons were caught
+	* limit how many pokemon to catch (Default: 995) 
+	* auto stop bot when limit reached
+	* reset pokemon caught number to 0.
+	* fix bug that delete some names in settings.json
+	* more bugs were fixed
+---------------------------------------------------------------
 <B>from V1.1.3 to V1.1.4:</B>
 
 	* add support for the 💯 icon of discord
