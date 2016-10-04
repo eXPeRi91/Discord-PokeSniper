@@ -12,6 +12,9 @@ public class PokemonChatHandler implements MessageCreateListener {
 	static Thread t = null;
 
 	public void onMessageCreate(DiscordAPI discordAPI, Message message) {
+	//	char[] st = message.getContent().toCharArray();
+	//	for (int x = 0; x < st.length; x++)
+	//		System.out.println((int)st[x]);
 		String messageContents = message.getContent();
 		PokeLocation pokeLocation = PokeLocation.parsePokemonNotificationString(messageContents);
 		if (pokeLocation != null)

@@ -44,7 +44,7 @@ public class PokeLocation {
 	public static PokeLocation parsePokemonNotificationString(String notificationString) {
 		if (StringUtils.containsIgnoreCase(notificationString, "DSP"))
 			return null;
-		// DPSUtils.log("recived message");
+		System.out.println(notificationString);
 		// Find Lat/Long from string
 		Pattern pattern = Pattern.compile("(-?\\d+\\.\\d+)");
 		Matcher matcher = pattern.matcher(notificationString);
@@ -73,8 +73,10 @@ public class PokeLocation {
 				|| StringUtils.containsIgnoreCase(notificationString, "IV 100.00")
 				|| StringUtils.containsIgnoreCase(notificationString, "100iv")
 				|| StringUtils.containsIgnoreCase(notificationString, "100%")
+				|| StringUtils.containsIgnoreCase(notificationString, "%100")
 				|| StringUtils.containsIgnoreCase(notificationString, "IV:(100)")
-				|| StringUtils.containsIgnoreCase(notificationString, ":100:");
+				|| StringUtils.containsIgnoreCase(notificationString, ":100:")
+				|| checkInString100Icon(notificationString);
 		if (!is100IV)
 			return null;
 		// Find which pokemon we're talking about
@@ -82,7 +84,7 @@ public class PokeLocation {
 		for (Pokemon type : AllJsonData.getPokelist()) {
 			if (StringUtils.containsIgnoreCase(notificationString, type.getName())
 					|| StringUtils.containsIgnoreCase(notificationString, type.getDispalyName())) {
-				if(type.getCatchable())
+				if (type.getCatchable())
 					pokemonType = type;
 				break;
 			}
@@ -91,6 +93,21 @@ public class PokeLocation {
 		if (pokemonType == null)
 			return null;
 		return new PokeLocation(pokemonType, longitude, latitude);
+	}
+
+	private static boolean checkInString100Icon(String str) {
+		char[] temp = str.toCharArray();
+		int x;
+		for (x = 0; x < temp.length - 1 && temp.length >= 2; x++) {
+			int a = temp[x], b = temp[x + 1];
+			if (a == 55357 && b == 56495) {
+				// String s = str.substring(x);
+				// if(s.contains(" IV"))
+				return true;
+			}
+		}
+
+		return false;
 	}
 
 	@Override
