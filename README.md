@@ -49,7 +49,7 @@ you can select which pokemons to catch. (Default: catch all pokemon)
 - Type 'localStorage.token' (no quotes) in the text box at the bottom of white window.
 - It will echo your token back to you.
 - Paste WITHOUT quotes surrounding, 
-- An example of what to paste in token.txt is: MjI6OEk5Nzk1NjM2NZAyNTI4.Cr_xig.JoRe-r65JJ7SJGxB-6ptn7GgQJI
+- An example of what to paste in app window is: MjI6OEk5Nzk1NjM2NZAyNTI4.Cr_xig.JoRe-r65JJ7SJGxB-6ptn7GgQJI
 
 ---------------------------------------------------------------
 
