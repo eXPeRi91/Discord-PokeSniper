@@ -23,7 +23,7 @@ import threads.DiscordConnection;
 public class DPSUtils {
 	private static String currentDirectory = null;
 	private static DiscordConnection disCon;
-	private static String version = "v1.3.0";
+	private static String version = "v1.3.1";
 	private static Boolean running = false;
 	private static Integer pokeCatchCounter = 0;
 	private static Label fullCounter;
@@ -35,7 +35,7 @@ public class DPSUtils {
 
 	public static void log(String logMessage) {
 		LocalTime time = LocalTime.now();
-		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("hh:mm:ss");
+		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm:ss");
 		System.out.println("[" + time.format(formatter) + "] " + logMessage);
 		DPSUtils.updateLogArea("[" + time.format(formatter) + "] " + logMessage);
 	}

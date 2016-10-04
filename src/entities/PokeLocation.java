@@ -65,33 +65,46 @@ public class PokeLocation {
 		if (latitude % 1 == 0 || longitude % 1 == 0)
 			return null;
 		// Find if it is 100IV pokemon
-		boolean is100IV = StringUtils.containsIgnoreCase(notificationString, "IV: 100")
-				|| StringUtils.containsIgnoreCase(notificationString, "iv100")
-				|| StringUtils.containsIgnoreCase(notificationString, "IV:100")
-				|| StringUtils.containsIgnoreCase(notificationString, "iv 100")
-				|| StringUtils.containsIgnoreCase(notificationString, "IV 100.00")
-				|| StringUtils.containsIgnoreCase(notificationString, "100iv")
-				|| StringUtils.containsIgnoreCase(notificationString, "100%")
-				|| StringUtils.containsIgnoreCase(notificationString, "%100")
-				|| StringUtils.containsIgnoreCase(notificationString, "IV:(100)")
-				|| StringUtils.containsIgnoreCase(notificationString, ":100:")
-				|| checkInString100Icon(notificationString);
+		String st = "(((IV|iv):? ?%?100.?(\\d{2})?%?)|(100.?(\\d{2})?%? ?(IV|iv))|(100.?(\\d{2})?%)|% ?100.?(\\d{2})?)";
+		Pattern patternIV = Pattern.compile(st);
+		Matcher matcherIV = patternIV.matcher(notificationString);
+		boolean is100IV = matcherIV.find() || checkInString100Icon(notificationString);
+		System.out.println(notificationString.replace("\n", " ").replaceAll("\\s+", " ") + " - is 100%: " + is100IV);
 		if (!is100IV)
 			return null;
 		// Find which pokemon we're talking about
 		Pokemon pokemonType = null;
 		for (Pokemon type : AllJsonData.getPokelist()) {
-			if (StringUtils.containsIgnoreCase(notificationString, type.getName())
-					|| StringUtils.containsIgnoreCase(notificationString, type.getDisplayName())) {
+			if(CheckPokemonInString(notificationString, type.getName())) {
 				if (type.getCatchable())
 					pokemonType = type;
 				break;
 			}
 		}
-
 		if (pokemonType == null)
 			return null;
 		return new PokeLocation(pokemonType, longitude, latitude);
+	}
+
+	private static Boolean CheckPokemonInString(String notificationString, String pokemonName) {
+		char[] pokeName = pokemonName.toLowerCase().toCharArray();
+		char[] string = notificationString.toLowerCase().toCharArray();
+		boolean flag = false;
+		for(int i = 0; i< string.length-pokeName.length; i++) {
+			flag = false;
+			int j=0;
+			for(j=0; j<pokeName.length; j++) {
+				if(pokeName[j] == string[i+j]) {
+					flag = true;
+				} else {
+					flag = false;
+					break;
+				}
+			}
+			if(j == pokeName.length && flag)
+				return true;
+		}
+		return false;
 	}
 
 	private static boolean checkInString100Icon(String str) {

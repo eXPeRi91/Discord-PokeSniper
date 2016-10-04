@@ -24,17 +24,26 @@ public class JSONHandler {
 			JSONArray pokemon = (JSONArray) jsonObject.get("pokemons");
 			@SuppressWarnings("rawtypes")
 			Iterator i = pokemon.iterator();
+			boolean start = false;
 			while (i.hasNext()) {
 				JSONObject innerObj = (JSONObject) i.next();
 				if (innerObj.get("id") != null) {
-					poke.add(new Pokemon(Integer.parseInt((String) innerObj.get("id")), (String) innerObj.get("name"),
-							(Boolean) innerObj.get("catch"), (String) innerObj.get("displayName"),
-							(String) innerObj.get("amount")));
+					String pokeName = (String) innerObj.get("name");
+					if (pokeName.equals("Exeggcutor"))
+						pokeName = "Exeggutor";
+					Integer number = Integer.parseInt((String) innerObj.get("id"));
+					if (number == 69 && pokeName.equals("Machamp"))
+						start = true;
+					if(start) {
+						number = number-1;
+					}
+					poke.add(new Pokemon(number, pokeName, (Boolean) innerObj.get("catch"),
+							(String) innerObj.get("displayName"), (String) innerObj.get("amount")));
 					if (innerObj.get("amount") != null)
 						DPSUtils.setPokeCatchCounter(Integer.parseInt((String) innerObj.get("amount")));
 				}
 			}
-			if(amount == null)
+			if (amount == null)
 				amount = "921";
 			new AllJsonData(token, poke, amount);
 
@@ -48,7 +57,7 @@ public class JSONHandler {
 			FileWriter write = new FileWriter(DPSUtils.getCurrentDirectory() + "/settings.json");
 			String str = "{\n";
 			str += "\t\"token\": \"" + AllJsonData.getToken() + "\", \n";
-			str += "\t\"amountToCatch\": \""+ AllJsonData.getAmountToCatch() +"\", \n";
+			str += "\t\"amountToCatch\": \"" + AllJsonData.getAmountToCatch() + "\", \n";
 			str += "\t\"pokemons\": [\n";
 			for (Pokemon pokemon : AllJsonData.getPokelist()) {
 				str += pokemon.toJSON();
