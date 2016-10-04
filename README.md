@@ -1,4 +1,4 @@
-# Discord PokeSniper v1.3.0
+# Discord PokeSniper v1.3.1
 <B>Discord PokeSniper</B> is a bot that based on the <B><i>Discord 100IV auto Sniper</i></B> of <B>CandyBuns</B> and inspired by it.
 
 Lots of the code of <B>CandyBuns</B> has been changed by me, and a lot more code has been added by me.
