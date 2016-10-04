@@ -77,6 +77,16 @@ public class DiscordConnection implements Runnable {
 		discordAPI.disconnect();
 		DPSUtils.log("Autosniper Finished...");
 		DPSUtils.log("End Discord session.");
+		Platform.runLater(new Runnable() {
+			@Override
+			public void run() {
+				tok.setDisable(false);
+				btn.setDisable(false);
+				btn.setText("Start catching 100 IV!");
+				tok.setEditable(true);
+				MyController.setStart(false);
+			}
+		});
 	}
 
 	public void start() {

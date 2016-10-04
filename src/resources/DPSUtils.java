@@ -26,8 +26,9 @@ import threads.DiscordConnection;
 public class DPSUtils {
 	private static String currentDirectory = null;
 	private static DiscordConnection disCon;
-	private static String version = "v1.1";
+	private static String version = "v1.1.2";
 	private static Boolean running = false;
+
 	public static double formatCoords(double coords) {
 		DecimalFormat df = new DecimalFormat("000.00000");
 		return Double.parseDouble(df.format(coords).replace(',', '.'));
@@ -35,7 +36,7 @@ public class DPSUtils {
 
 	public static void log(String logMessage) {
 		LocalTime time = LocalTime.now();
-		DateTimeFormatter formatter = DateTimeFormatter.ofLocalizedTime(FormatStyle.SHORT);
+		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("hh:mm:ss");
 		System.out.println("[" + time.format(formatter) + "] " + logMessage);
 		DPSUtils.updateLogArea("[" + time.format(formatter) + "] " + logMessage);
 	}
@@ -69,15 +70,14 @@ public class DPSUtils {
 		logger.setLevel(Level.ERROR);
 	}
 
-
 	public static void startBot(Button btn, TextField token) {
 		disableLoggers();
 		setCurrentDirectoryLocation();
 		DPSUtils.log("Starting Program ");
-		disCon = new DiscordConnection(btn,token);
+		disCon = new DiscordConnection(btn, token);
 		disCon.start();
 	}
-	
+
 	public static void stopBot() {
 		disCon.terminate();
 	}

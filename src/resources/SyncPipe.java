@@ -25,25 +25,23 @@ class SyncPipe implements Runnable {
 			BufferedReader br = new BufferedReader(new InputStreamReader(istrm_, "UTF-8"));
 			String str = new String();
 			while ((str = br.readLine()) != null) {
-				AnalizeString(str);
+				analyzeString(str);
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
 
-	private void AnalizeString(String str) {
-		Pokemon temp = CheckWhatWasCaught(str);
+	private void analyzeString(String str) {
+		Pokemon temp = checkWhatWasCaught(str);
 		if (str.contains("There is no"))
 			DPSUtils.log("The Pokemon " + temp.getDispalyName() + " was not found at the location.");
-		if (str.contains("We caught a")) {
+		else if (str.contains("We caught a")) {
 			temp.updateLableValue();
 			DPSUtils.log("The Pokemon " + temp.getDispalyName() + " was caught.");
-		}
-		if (str.contains("got away.")) {
+		} else if (str.contains("got away.")) {
 			DPSUtils.log("The Pokemon " + temp.getDispalyName() + " got away.");
-		}
-		if (str.contains("We have") && str.contains("berries left")) {
+		} else if (str.contains("We have") && str.contains("berries left")) {
 			Pattern p = Pattern.compile("\\d+");
 			Matcher m = p.matcher(str);
 			String s = "";
@@ -52,7 +50,7 @@ class SyncPipe implements Runnable {
 					s += "We have " + m.group() + " Pokeballs, ";
 					if (Integer.parseInt(m.group()) == 0) {
 						DPSUtils.stopBot();
-						this.flag=true;
+						this.flag = true;
 					}
 				} else if (x == 4) {
 					s += "" + m.group() + " berries, ";
@@ -61,18 +59,25 @@ class SyncPipe implements Runnable {
 				}
 			}
 			DPSUtils.log(s);
-		}
-		if(str.contains("Got into the fight without any Pokeballs")) {
-			flag=true;
+		} else if (str.contains("Got into the fight without any Pokeballs")) {
+			flag = true;
+		} else if(str.contains("is not recognized as an internal or externa")) {
+			DPSUtils.log(" - Can not find Pokesniper2.exe file. ");
+			DPSUtils.log(" - did you put them in the same folder?");
+			DPSUtils.log("Stoping Bot, Reason: Can not catch pokemons with no Pokesniper2.exe file.");
+			DPSUtils.stopBot();
+		} else {
+			
 		}
 
-		if(flag==true) {
+		if (flag == true) {
 			DPSUtils.log("No more Pokeballs left, stoping bot");
-			flag=false;
+			DPSUtils.stopBot();
+			flag = false;
 		}
 	}
 
-	private Pokemon CheckWhatWasCaught(String str) {
+	private Pokemon checkWhatWasCaught(String str) {
 		Pokemon pokemonType = null;
 		for (Pokemon type : AllJsonData.getPokelist()) {
 			if (StringUtils.containsIgnoreCase(str, type.getName())
