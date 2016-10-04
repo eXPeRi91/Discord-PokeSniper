@@ -54,7 +54,11 @@ you can select which pokemons to catch. (Default: catch all pokemon)
 ---------------------------------------------------------------
 
 <B><h1>CHANGES:</h1></B>
+<B>from v1.1.1 to v1.1.2:</B>
 
+	* add error for log - No pokesniper2.exe file found
+	* add seconds to log. [mm:hh:ss] 
+---------------------------------------------------------------
 <B>from v1.1.0 to v1.1.1:</B>
 
 	* add auto stop bot when no more pokeballs left in bag
