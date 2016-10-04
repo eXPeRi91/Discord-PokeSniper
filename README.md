@@ -1,4 +1,4 @@
-# Discord PokeSniper v1.3.1
+# Discord PokeSniper v1.3.2
 <B>Discord PokeSniper</B> is a bot that based on the <B><i>Discord 100IV auto Sniper</i></B> of <B>CandyBuns</B> and inspired by it.
 
 Lots of the code of <B>CandyBuns</B> has been changed by me, and a lot more code has been added by me.
@@ -54,6 +54,10 @@ you can select which pokemons to catch. (Default: catch all pokemon)
 ---------------------------------------------------------------
 
 <B><h1>CHANGES:</h1></B>
+Changes from v1.3.1 to 1.3.2:
+
+	* Fix problem that caused many people not receiving messages from Discord
+
 Changes from v1.3.0 to 1.3.1:
 
 	* Fix problem that caused 100% iv pokemon not to get caught
