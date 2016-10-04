@@ -23,14 +23,14 @@ import threads.DiscordConnection;
 public class DPSUtils {
 	private static String currentDirectory = null;
 	private static DiscordConnection disCon;
-	private static String version = "v1.3.1";
+	private static String version = "v1.3.2";
 	private static Boolean running = false;
 	private static Integer pokeCatchCounter = 0;
 	private static Label fullCounter;
 	
 	public static double formatCoords(double coords) {
 		DecimalFormat df = new DecimalFormat("###.#####");
-		return Double.parseDouble(df.format(coords));
+		return Double.parseDouble(df.format(coords).replace(',', '.'));
 	}
 
 	public static void log(String logMessage) {

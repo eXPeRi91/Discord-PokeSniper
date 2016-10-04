@@ -42,8 +42,8 @@ public class PokeLocation {
 	}
 
 	public static PokeLocation parsePokemonNotificationString(String notificationString) {
-		if (StringUtils.containsIgnoreCase(notificationString, "DSP"))
-			return null;
+		//if (StringUtils.containsIgnoreCase(notificationString, "DSP"))
+		//	return null;
 		// Find Lat/Long from string
 		Pattern pattern = Pattern.compile("(-?\\d+\\.\\d{5,})"); // at least 5 digits after the dot.
 		Matcher matcher = pattern.matcher(notificationString);
