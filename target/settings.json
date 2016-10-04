@@ -1,5 +1,5 @@
 {
-	"token": "MjE3MjYyODE4NjIwMDgwMTI4.CtPpIQ.kpTtG1qu8AUDn3JJPXU16TLVibI", 
+	"token": "", 
 	"pokemons": [
 		{"id": "001", "name": "Bulbasaur", "catch": true},
 		{"id": "002", "name": "Ivysaur", "catch": true},
