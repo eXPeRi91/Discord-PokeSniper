@@ -1,4 +1,4 @@
-# Discord PokeSniper v1.2.0
+# Discord PokeSniper v1.3.0
 <B>Discord PokeSniper</B> is a bot that based on the <B><i>Discord 100IV auto Sniper</i></B> of <B>CandyBuns</B> and inspired by it.
 
 Lots of the code of <B>CandyBuns</B> has been changed by me, and a lot more code has been added by me.
@@ -54,6 +54,13 @@ you can select which pokemons to catch. (Default: catch all pokemon)
 ---------------------------------------------------------------
 
 <B><h1>CHANGES:</h1></B>
+Changes from v1.2.0 to 1.3.0:
+
+	* Important update!!
+	* add waiting time between snipes, random time between 10-15 seconds
+	* fix trying to catch same pokemon with shorter lan/lat
+	* creating the base to integrate masterball bot to farm pokeballs
+---------------------------------------------------------------
 from v1.1.4 to 1.2.0:
 
 	* add Select all / Deselect all
