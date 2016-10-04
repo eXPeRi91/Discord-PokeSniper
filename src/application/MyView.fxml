@@ -50,6 +50,23 @@
                      </textFill>
                   </Label>
                </top>
+               <bottom>
+                  <AnchorPane prefHeight="76.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+                     <children>
+                        <Label layoutX="8.0" layoutY="2.0" prefHeight="32.0" prefWidth="63.0" text="Caught:" AnchorPane.bottomAnchor="4.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="137.0" AnchorPane.topAnchor="40.0" />
+                        <Label fx:id="pokeCounter" layoutX="147.0" layoutY="2.0" prefHeight="32.0" prefWidth="28.0" text="000" AnchorPane.bottomAnchor="4.0" AnchorPane.rightAnchor="108.0" AnchorPane.topAnchor="40.0" />
+                        <Button fx:id="resetCounter" layoutX="135.0" layoutY="4.0" mnemonicParsing="false" onMouseClicked="#resetCounterNow" onMousePressed="#resetCounterNow" prefHeight="32.0" prefWidth="57.0" text="Reset" AnchorPane.bottomAnchor="4.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="40.0" />
+                        <Button layoutX="5.0" layoutY="5.0" mnemonicParsing="false" onMouseClicked="#selectAllpokemons" onMousePressed="#selectAllpokemons" prefHeight="31.0" prefWidth="96.0" text="Select all" AnchorPane.leftAnchor="5.0" AnchorPane.topAnchor="5.0" />
+                        <Button layoutX="94.0" layoutY="5.0" mnemonicParsing="false" onMouseClicked="#deSelectAllPokemons" onMousePressed="#deSelectAllPokemons" prefHeight="31.0" prefWidth="96.0" text="Deselect all" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="5.0" />
+                        <TextField fx:id="totalAmount" alignment="CENTER" layoutX="101.0" layoutY="41.0" onInputMethodTextChanged="#changeTotalAmount" onKeyPressed="#changeTotalAmount" onKeyReleased="#changeTotalAmount" onKeyTyped="#changeTotalAmount" prefHeight="31.0" prefWidth="38.0" text="999">
+                           <padding>
+                              <Insets left="5.0" right="4.0" />
+                           </padding>
+                        </TextField>
+                        <Label layoutX="91.0" layoutY="44.0" text="/" />
+                     </children>
+                  </AnchorPane>
+               </bottom>
             </BorderPane>
          </left>
          <center>

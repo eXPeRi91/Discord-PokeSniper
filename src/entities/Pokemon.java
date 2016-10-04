@@ -1,33 +1,37 @@
 package entities;
 
+import application.JSONHandler;
 import javafx.application.Platform;
+import javafx.scene.control.CheckBox;
 import javafx.scene.control.Label;
+import resources.DPSUtils;
 
 public class Pokemon {
 	private Integer id;
 	private String name;
-	private Boolean catchable;	
-	private String dispalyName;	// Sometimes the pokemons' name is different than the display name
-	private Label label;		// keep the amount of pokemons caught by the bot
+	private Boolean catchable;
+	private String displayName; // Sometimes the pokemons' name is different
+								// than the display name
+	private Label label; // keep the amount of pokemons caught by the bot
 	private Integer amount;
-	
-	/*public Pokemon(Integer id, String name, Boolean c, String dName) {
-		this.id = id;
-		this.name = name;
-		this.dispalyName = dName == null ? name : dName;
-		this.catchable = c;
-		this.setAmount(0)*;
-	}*/
+	private CheckBox checkbox;
+
+	/*
+	 * public Pokemon(Integer id, String name, Boolean c, String dName) {
+	 * this.id = id; this.name = name; this.displayName = dName == null ? name :
+	 * dName; this.catchable = c; this.setAmount(0)*; }
+	 */
 	public Pokemon(Integer id, String name, Boolean c, String dName, String amount) {
 		this.id = id;
 		this.name = name;
-		this.dispalyName = dName == null ? name : dName;
+		this.displayName = dName == null ? name : dName;
 		this.catchable = c;
-		if(amount != null)
+		if (amount != null)
 			this.setAmount(Integer.valueOf(amount));
-		else 
+		else
 			this.setAmount(0);
 	}
+
 	public Integer getId() {
 		return id;
 	}
@@ -52,12 +56,12 @@ public class Pokemon {
 		this.catchable = catchable;
 	}
 
-	public String getDispalyName() {
-		return dispalyName;
+	public String getDisplayName() {
+		return displayName;
 	}
 
-	public void setDispalyName(String dispalyName) {
-		this.dispalyName = dispalyName;
+	public void setDisplayName(String displayName) {
+		this.displayName = displayName;
 	}
 
 	public Label getLabel() {
@@ -74,21 +78,30 @@ public class Pokemon {
 		Platform.runLater(new Runnable() {
 			@Override
 			public void run() {
+				DPSUtils.getFullCounter()
+						.setText(String.valueOf((Integer.parseInt(DPSUtils.getFullCounter().getText()) + 1)));
 				that.label.setText(amount.toString());
+				DPSUtils.setPokeCatchCounter();
+				JSONHandler.UpdatePokeList();
 			}
 		});
-		
 	}
-	
+
 	public Integer getAmount() {
 		return amount;
 	}
+
 	public void setAmount(Integer amount) {
 		this.amount = amount;
+		if (this.label != null) {
+			this.label.setText(amount.toString());
+			JSONHandler.UpdatePokeList();
+		}
 	}
+
 	@Override
 	public String toString() {
-		return "Pokemon [id=" + id + ", name=" + name + ", catchable=" + catchable + ", dispalyName=" + dispalyName
+		return "Pokemon [id=" + id + ", name=" + name + ", catchable=" + catchable + ", displayName=" + displayName
 				+ "]";
 	}
 
@@ -96,8 +109,8 @@ public class Pokemon {
 		// {"id": "152","name": "Mew","catch": true},
 		String str = "\t\t{\"id\": \"" + String.format("%03d", id) + "\", \"name\": \"" + name + "\", \"catch\": "
 				+ catchable + "";
-		if (!dispalyName.equals(name)) {
-			str += ", \"dispalyName\": \"" + dispalyName + "\"";
+		if (!displayName.equals(name)) {
+			str += ", \"displayName\": \"" + displayName + "\"";
 		}
 		if (this.amount > 0) {
 			str += ", \"amount\": \"" + amount + "\"";
@@ -105,5 +118,13 @@ public class Pokemon {
 		str += "},\n";
 		return str;
 
+	}
+
+	public CheckBox getCheckbox() {
+		return checkbox;
+	}
+
+	public void setCheckbox(CheckBox checkbox) {
+		this.checkbox = checkbox;
 	}
 }

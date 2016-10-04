@@ -11,10 +11,12 @@ public class AllJsonData {
 	private static ArrayList<Pokemon> pokelist;
 	private static VBox view;
 	private static ScrollPane ScrollForLog;
+	private static Integer amountToCatch;
 	
-	public AllJsonData(String token, ArrayList<Pokemon> list) {
+	public AllJsonData(String token, ArrayList<Pokemon> list, String amount) {
 		AllJsonData.token = token;
 		AllJsonData.pokelist = list;
+		AllJsonData.amountToCatch = Integer.parseInt(amount);
 	}
 
 	public static String getToken() {
@@ -48,5 +50,14 @@ public class AllJsonData {
 
 	public static void setScrollForLog(ScrollPane scrollForLog) {
 		AllJsonData.ScrollForLog = scrollForLog;
+	}
+
+	public static Integer getAmountToCatch() {
+		return amountToCatch;
+	}
+
+	public static void setAmountToCatch(Integer amountToCatch) {
+		AllJsonData.amountToCatch = amountToCatch;
+		JSONHandler.UpdatePokeList();
 	}
 }

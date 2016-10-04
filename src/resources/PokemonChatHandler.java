@@ -12,9 +12,12 @@ public class PokemonChatHandler implements MessageCreateListener {
 	static Thread t = null;
 
 	public void onMessageCreate(DiscordAPI discordAPI, Message message) {
-	//	char[] st = message.getContent().toCharArray();
-	//	for (int x = 0; x < st.length; x++)
-	//		System.out.println((int)st[x]);
+	/*	char[] st = message.getContent().toCharArray();
+		for (int x = 0; x < st.length; x++) {
+			int y = st[x];
+			System.out.println(y);
+		}
+		System.out.println(message);*/
 		String messageContents = message.getContent();
 		PokeLocation pokeLocation = PokeLocation.parsePokemonNotificationString(messageContents);
 		if (pokeLocation != null)
@@ -27,7 +30,7 @@ public class PokemonChatHandler implements MessageCreateListener {
 
 		double latitude = pokeLocation.getLatitude();
 		double longitude = pokeLocation.getLongitude();
-		String pokemonName = pokeLocation.getPokemonType().getDispalyName();
+		String pokemonName = pokeLocation.getPokemonType().getDisplayName();
 
 		DPSUtils.log("Sniping " + pokemonName + " @ " + latitude + ", " + longitude + ".");
 

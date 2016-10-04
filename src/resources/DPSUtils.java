@@ -6,10 +6,7 @@ import java.security.CodeSource;
 import java.text.DecimalFormat;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
-import java.time.format.FormatStyle;
-
 import org.slf4j.LoggerFactory;
-
 import application.JSONHandler;
 import application.Main;
 import ch.qos.logback.classic.Level;
@@ -26,9 +23,11 @@ import threads.DiscordConnection;
 public class DPSUtils {
 	private static String currentDirectory = null;
 	private static DiscordConnection disCon;
-	private static String version = "v1.1.3";
+	private static String version = "v1.2.0";
 	private static Boolean running = false;
-
+	private static Integer pokeCatchCounter = 0;
+	private static Label fullCounter;
+	
 	public static double formatCoords(double coords) {
 		DecimalFormat df = new DecimalFormat("000.00000");
 		return Double.parseDouble(df.format(coords).replace(',', '.'));
@@ -81,10 +80,12 @@ public class DPSUtils {
 	public static void stopBot() {
 		disCon.terminate();
 	}
+
 	public static void stopBot(String str) {
 		DPSUtils.log("Stoping Bot, Reason: " + str);
 		disCon.terminate();
 	}
+
 	public static void setCurrentDirectoryLocation() {
 		try {
 			CodeSource codeSource = Main.class.getProtectionDomain().getCodeSource();
@@ -115,4 +116,31 @@ public class DPSUtils {
 		DPSUtils.running = running;
 	}
 
+	public static Integer getPokeCatchCounter() {
+		return pokeCatchCounter;
+	}
+
+	public static void setPokeCatchCounter() {
+		DPSUtils.pokeCatchCounter++;
+		if(pokeCatchCounter >= AllJsonData.getAmountToCatch()) {
+			try {
+				Thread.sleep(100);
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			DPSUtils.stopBot("Total number of "+pokeCatchCounter +" pokemons was caught!");
+		}
+	}
+	public static void setPokeCatchCounter(Integer toAdd) {
+		DPSUtils.pokeCatchCounter += toAdd;
+	}
+
+	public static Label getFullCounter() {
+		return fullCounter;
+	}
+
+	public static void setFullCounter(Label fullCounter) {
+		DPSUtils.fullCounter = fullCounter;
+	}
 }

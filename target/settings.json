@@ -1,5 +1,6 @@
 {
 	"token": "", 
+	"amountToCatch": "995", 
 	"pokemons": [
 		{"id": "001", "name": "Bulbasaur", "catch": true},
 		{"id": "002", "name": "Ivysaur", "catch": true},
@@ -29,10 +30,10 @@
 		{"id": "026", "name": "Raichu", "catch": true},
 		{"id": "027", "name": "Sandshrew", "catch": true},
 		{"id": "028", "name": "Sandslash", "catch": true},
-		{"id": "029", "name": "Nidoran", "catch": true},
+		{"id": "029", "name": "Nidoran", "catch": true, "displayName": "Nidoran (f)"},
 		{"id": "030", "name": "Nidorina", "catch": true},
 		{"id": "031", "name": "Nidoqueen", "catch": true},
-		{"id": "032", "name": "Nidoran", "catch": true},
+		{"id": "032", "name": "Nidoran", "catch": true, "displayName": "Nidoran (m)"},
 		{"id": "033", "name": "Nidorino", "catch": true},
 		{"id": "034", "name": "Nidoking", "catch": true},
 		{"id": "035", "name": "Clefairy", "catch": true},
@@ -84,7 +85,7 @@
 		{"id": "081", "name": "Slowbro", "catch": true},
 		{"id": "082", "name": "Magnemite", "catch": true},
 		{"id": "083", "name": "Magneton", "catch": true},
-		{"id": "084", "name": "Farfetchd", "catch": true},
+		{"id": "084", "name": "Farfetchd", "catch": true, "displayName": "Farfetch'd"},
 		{"id": "085", "name": "Doduo", "catch": true},
 		{"id": "086", "name": "Dodrio", "catch": true},
 		{"id": "087", "name": "Seel", "catch": true},

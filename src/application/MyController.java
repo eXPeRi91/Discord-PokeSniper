@@ -29,8 +29,6 @@ public class MyController implements Initializable {
 	private Button StartBot;
 	@FXML
 	private GridPane PokeListGrid;
-	private static Boolean start = false;
-
 	@FXML
 	private TextField token;
 	@FXML
@@ -39,6 +37,14 @@ public class MyController implements Initializable {
 	private ScrollPane ScrollForLog;
 	@FXML
 	private Button MoreInfo;
+	@FXML
+	private Button resetCounter;
+	@FXML
+	private Label pokeCounter;
+	@FXML
+	private TextField totalAmount;
+
+	private static Boolean start = false;
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
@@ -50,13 +56,22 @@ public class MyController implements Initializable {
 		}
 	}
 
+	public void resetCounterNow() {
+		for (Pokemon poke : AllJsonData.getPokelist()) {
+			poke.setAmount(0);
+		}
+		pokeCounter.setText("0");
+	}
+
 	public void updateToken() {
 		AllJsonData.setToken(this.token.getText());
 	}
 
 	public void openPaypalLink() {
 		try {
-			Desktop.getDesktop().browse(new URL("https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=WNDFMD6MVL4KN").toURI());
+			Desktop.getDesktop().browse(
+					new URL("https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=WNDFMD6MVL4KN")
+							.toURI());
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -65,7 +80,7 @@ public class MyController implements Initializable {
 
 	public void startTheBot() {
 		// TODO
-		if(token.getText().isEmpty()) {
+		if (token.getText().isEmpty()) {
 			Alert alert = new Alert(AlertType.ERROR);
 			alert.setTitle("No token entered!");
 			alert.setHeaderText("No token was entered!");
@@ -95,12 +110,13 @@ public class MyController implements Initializable {
 		ArrayList<Pokemon> list = AllJsonData.getPokelist();
 		for (Pokemon poke : list) {
 			CheckBox checkBox = new CheckBox();
-			checkBox.setText(poke.getDispalyName());
+			checkBox.setText(poke.getDisplayName());
 			checkBox.setSelected(poke.getCatchable());
 			checkBox.setId(poke.getId().toString());
 			checkBox.selectedProperty().addListener(new MyPokemonChangeListener<Boolean>(poke));
 			Label lable = new Label(poke.getAmount().toString());
 			poke.setLabel(lable);
+			poke.setCheckbox(checkBox);
 			RowConstraints row = new RowConstraints();
 			row.setMaxHeight(30);
 			row.setMinHeight(30);
@@ -118,7 +134,9 @@ public class MyController implements Initializable {
 			}
 		});
 		AllJsonData.setScrollForLog(this.ScrollForLog);
-
+		pokeCounter.setText(DPSUtils.getPokeCatchCounter().toString());
+		totalAmount.setText(AllJsonData.getAmountToCatch().toString());
+		DPSUtils.setFullCounter(pokeCounter);
 	}
 
 	public void showPopUp() {
@@ -129,9 +147,29 @@ public class MyController implements Initializable {
 				"This program was built by RebliNk17.\nIt is based on DiscordSniper of CandyBuns and PokeSniper2 program.");
 		alert.showAndWait();
 	}
-	
+
 	public static Boolean getStart() {
 		return start;
+	}
+
+	public void changeTotalAmount() {
+		if (!totalAmount.getText().isEmpty()) {
+			if(Integer.parseInt(totalAmount.getText()) > 995)
+				totalAmount.setText("995");
+			AllJsonData.setAmountToCatch(Integer.parseInt(totalAmount.getText()));
+		}
+	}
+
+	public void selectAllpokemons() {
+		for (Pokemon poke : AllJsonData.getPokelist()) {
+			poke.getCheckbox().setSelected(true);
+		}
+	}
+
+	public void deSelectAllPokemons() {
+		for (Pokemon poke : AllJsonData.getPokelist()) {
+			poke.getCheckbox().setSelected(false);
+		}
 	}
 
 	public static void setStart(Boolean start) {

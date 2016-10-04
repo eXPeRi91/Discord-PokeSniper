@@ -44,7 +44,7 @@ public class PokeLocation {
 	public static PokeLocation parsePokemonNotificationString(String notificationString) {
 		if (StringUtils.containsIgnoreCase(notificationString, "DSP"))
 			return null;
-		System.out.println(notificationString);
+		//System.out.println(notificationString);
 		// Find Lat/Long from string
 		Pattern pattern = Pattern.compile("(-?\\d+\\.\\d+)");
 		Matcher matcher = pattern.matcher(notificationString);
@@ -83,7 +83,7 @@ public class PokeLocation {
 		Pokemon pokemonType = null;
 		for (Pokemon type : AllJsonData.getPokelist()) {
 			if (StringUtils.containsIgnoreCase(notificationString, type.getName())
-					|| StringUtils.containsIgnoreCase(notificationString, type.getDispalyName())) {
+					|| StringUtils.containsIgnoreCase(notificationString, type.getDisplayName())) {
 				if (type.getCatchable())
 					pokemonType = type;
 				break;

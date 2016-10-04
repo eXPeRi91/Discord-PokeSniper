@@ -35,12 +35,12 @@ class SyncPipe implements Runnable {
 	private void analyzeString(String str) {
 		Pokemon temp = checkWhatWasCaught(str);
 		if (str.contains("There is no"))
-			DPSUtils.log("The Pokemon " + temp.getDispalyName() + " was not found at the location.");
+			DPSUtils.log("The Pokemon " + temp.getDisplayName() + " was not found at the location.");
 		else if (str.contains("We caught a")) {
 			temp.updateLableValue();
-			DPSUtils.log("The Pokemon " + temp.getDispalyName() + " was caught.");
+			DPSUtils.log("The Pokemon " + temp.getDisplayName() + " was caught.");
 		} else if (str.contains("got away.")) {
-			DPSUtils.log("The Pokemon " + temp.getDispalyName() + " got away.");
+			DPSUtils.log("The Pokemon " + temp.getDisplayName() + " got away.");
 		} else if (str.contains("We have") && str.contains("berries left")) {
 			Pattern p = Pattern.compile("\\d+");
 			Matcher m = p.matcher(str);
@@ -85,7 +85,7 @@ class SyncPipe implements Runnable {
 		Pokemon pokemonType = null;
 		for (Pokemon type : AllJsonData.getPokelist()) {
 			if (StringUtils.containsIgnoreCase(str, type.getName())
-					|| StringUtils.containsIgnoreCase(str, type.getDispalyName())) {
+					|| StringUtils.containsIgnoreCase(str, type.getDisplayName())) {
 				pokemonType = type;
 				break;
 			}
