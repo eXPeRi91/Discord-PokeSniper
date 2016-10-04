@@ -54,6 +54,15 @@ you can select which pokemons to catch. (Default: catch all pokemon)
 ---------------------------------------------------------------
 
 <B><h1>CHANGES:</h1></B>
+Changes from v1.3.0 to 1.3.1:
+
+	* Fix problem that caused 100% iv pokemon not to get caught
+	* change time in log to 24h
+	* few more discord 100% writing add
+	* debug window (bat file) now shows all the pokemons (even not with 100% iv)
+		if you find any 100% that was not caught please let me know.
+		or if somehow you don't see any pokemons there (also a problem)
+---------------------------------------------------------------
 Changes from v1.2.0 to 1.3.0:
 
 	* Important update!!
