@@ -64,15 +64,19 @@ class SyncPipe implements Runnable {
 		} else if(str.contains("is not recognized as an internal or externa")) {
 			DPSUtils.log(" - Can not find Pokesniper2.exe file. ");
 			DPSUtils.log(" - did you put them in the same folder?");
-			DPSUtils.log("Stoping Bot, Reason: Can not catch pokemons with no Pokesniper2.exe file.");
-			DPSUtils.stopBot();
+			DPSUtils.stopBot("Can not catch pokemons with no Pokesniper2.exe file.");
+		} else if(str.contains("Could not load settings")) {
+			DPSUtils.log(" - Please check whether user.xml file is edited currectly.");
+			DPSUtils.stopBot("Problem with user.xml file.");
+		} else if(str.contains("Please confirm that the PokemonGo servers are online before using")) {
+			DPSUtils.log(" - Please check whether user.xml file is edited currectly, or PokemonGo servers are online!");
+			DPSUtils.stopBot("Could not connect to Pokemon Go servers.");
 		} else {
 			
 		}
 
 		if (flag == true) {
-			DPSUtils.log("No more Pokeballs left, stoping bot");
-			DPSUtils.stopBot();
+			DPSUtils.stopBot("No more Pokeballs left!");
 			flag = false;
 		}
 	}

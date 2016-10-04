@@ -26,7 +26,7 @@ import threads.DiscordConnection;
 public class DPSUtils {
 	private static String currentDirectory = null;
 	private static DiscordConnection disCon;
-	private static String version = "v1.1.2";
+	private static String version = "v1.1.3";
 	private static Boolean running = false;
 
 	public static double formatCoords(double coords) {
@@ -81,7 +81,10 @@ public class DPSUtils {
 	public static void stopBot() {
 		disCon.terminate();
 	}
-
+	public static void stopBot(String str) {
+		DPSUtils.log("Stoping Bot, Reason: " + str);
+		disCon.terminate();
+	}
 	public static void setCurrentDirectoryLocation() {
 		try {
 			CodeSource codeSource = Main.class.getProtectionDomain().getCodeSource();
