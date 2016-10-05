@@ -1,4 +1,4 @@
-# Discord PokeSniper v1.4.1
+# Discord PokeSniper v1.4.2
 <B>Discord PokeSniper</B> is a bot that based on the <B><i>Discord 100IV auto Sniper</i></B> of <B>CandyBuns</B> and inspired by it.
 
 Lots of the code of <B>CandyBuns</B> has been changed by me, and a lot more code has been added by me.
@@ -71,6 +71,17 @@ Masterball bot:<BR>
 ---------------------------------------------------------------
 
 <B><h1>CHANGES:</h1></B>
+Changes from v1.4.1 to 1.4.2:
+
+	* Fix nidoran female and male snipping problem
+	* Change background color to log
+	* Add text color for defferent type of messages
+	* Add message about the caught pokemon IV. 
+		sometimes someone post a fake 100% pokemon and we catch it,
+		now, we will know if it was 100 or not, and if not, what iv we caught.
+	* Fix problem that caused few pokemons to be considered as not valid.
+	* Fix bug that whan the pokemon name is in the end of the message, the bot not recognize it.
+---------------------------------------------------------------
 Changes from v1.4.0 to 1.4.1:
 
 	* Fix a bug that caused some users to get a runtime error.
