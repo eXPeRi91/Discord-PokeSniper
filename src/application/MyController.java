@@ -4,7 +4,6 @@ import java.awt.Desktop;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
-
 import entities.AllJsonData;
 import entities.Pokemon;
 import javafx.beans.value.ChangeListener;
