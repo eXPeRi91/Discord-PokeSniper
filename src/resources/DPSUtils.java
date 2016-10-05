@@ -46,7 +46,7 @@ public class DPSUtils {
 	public static String getToken() {
 		return AllJsonData.getToken();
 	}
-
+ 
 	public static void loadSnipingPokemon() {
 		JSONHandler.PokeList();
 	}
