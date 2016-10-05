@@ -9,9 +9,7 @@ import java.io.PrintWriter;
 import java.text.DecimalFormat;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-
 import org.apache.commons.lang.StringUtils;
-
 import entities.AllJsonData;
 import entities.Pokemon;
 
