@@ -5,7 +5,6 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class PokeLocation {
-
 	private Pokemon pokemonType;
 	private double longitude;
 	private double latitude;
