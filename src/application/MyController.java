@@ -20,6 +20,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.RowConstraints;
 import javafx.scene.layout.VBox;
+import listeners.MyMasterBallListener;
 import listeners.MyPokemonChangeListener;
 import resources.DPSUtils;
 import javafx.scene.control.CheckBox;
@@ -43,17 +44,22 @@ public class MyController implements Initializable {
 	private Label pokeCounter;
 	@FXML
 	private TextField totalAmount;
+	@FXML
+	private CheckBox farmPokestops;
 
 	private static Boolean start = false;
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
-
 		try {
 			initializePokemonList();
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 		}
+	}
+
+	public void pokeFarmEnable() {
+		AllJsonData.setPokeFarm(farmPokestops.isSelected());
 	}
 
 	public void resetCounterNow() {
@@ -118,8 +124,8 @@ public class MyController implements Initializable {
 			poke.setLabel(lable);
 			poke.setCheckbox(checkBox);
 			RowConstraints row = new RowConstraints();
-			row.setMaxHeight(30);
-			row.setMinHeight(30);
+			row.setMaxHeight(20);
+			row.setMinHeight(20);
 			PokeListGrid.getRowConstraints().add(row);
 			PokeListGrid.addRow(x, checkBox, lable);
 			x++;
@@ -137,6 +143,8 @@ public class MyController implements Initializable {
 		pokeCounter.setText(DPSUtils.getPokeCatchCounter().toString());
 		totalAmount.setText(AllJsonData.getAmountToCatch().toString());
 		DPSUtils.setFullCounter(pokeCounter);
+		farmPokestops.selectedProperty().addListener(new MyMasterBallListener<Boolean>(farmPokestops));
+		farmPokestops.setSelected(AllJsonData.getPokeFarm());
 	}
 
 	public void showPopUp() {
@@ -144,7 +152,10 @@ public class MyController implements Initializable {
 		alert.setTitle("About");
 		alert.setHeaderText("DiscordPokeSniper " + DPSUtils.getVersion());
 		alert.setContentText(
-				"This program was built by RebliNk17.\nIt is based on DiscordSniper of CandyBuns and PokeSniper2 program.");
+				"This program was built by RebliNk17.\n\nIt is based on DiscordSniper of CandyBuns, PokeSniper2 and Masterball bot.\n\n"
+						+ "All of them are combined together so you can snipe all night long ;)\n\n" 
+						+ "Enjoy!\n\n"
+						+ "If you can afford, please consider donation. Thank you :)");
 		alert.showAndWait();
 	}
 
@@ -154,7 +165,7 @@ public class MyController implements Initializable {
 
 	public void changeTotalAmount() {
 		if (!totalAmount.getText().isEmpty()) {
-			if(Integer.parseInt(totalAmount.getText()) > 995)
+			if (Integer.parseInt(totalAmount.getText()) > 995)
 				totalAmount.setText("995");
 			AllJsonData.setAmountToCatch(Integer.parseInt(totalAmount.getText()));
 		}

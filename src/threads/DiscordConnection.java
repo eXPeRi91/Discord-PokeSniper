@@ -8,6 +8,7 @@ import java.util.TimerTask;
 import application.MyController;
 import de.btobastian.javacord.DiscordAPI;
 import de.btobastian.javacord.Javacord;
+import entities.AllJsonData;
 import entities.PokeLocation;
 import javafx.application.Platform;
 import javafx.scene.control.Button;
@@ -21,6 +22,7 @@ public class DiscordConnection implements Runnable {
 	private static DiscordAPI discordAPI;
 	private Button btn;
 	private TextField tok;
+
 	public DiscordConnection(Button btn, TextField token) {
 		// TODO Auto-generated constructor stub
 		this.tok = token;
@@ -32,7 +34,7 @@ public class DiscordConnection implements Runnable {
 		String token = DPSUtils.getToken();
 		discordAPI = Javacord.getApi(token, false);
 		discordAPI.connectBlocking();
-		if(discordAPI.getYourself() == null) {
+		if (discordAPI.getYourself() == null) {
 			DPSUtils.log("Could not connect to discord via the given token, try again!");
 			Platform.runLater(new Runnable() {
 				@Override
@@ -77,6 +79,24 @@ public class DiscordConnection implements Runnable {
 		discordAPI.disconnect();
 		DPSUtils.log("Autosniper Finished...");
 		DPSUtils.log("End Discord session.");
+		if (!AllJsonData.getPokeFarm()) {
+			Platform.runLater(new Runnable() {
+				@Override
+				public void run() {
+					tok.setDisable(false);
+					btn.setDisable(false);
+					btn.setText("Start catching 100 IV!");
+					tok.setEditable(true);
+					MyController.setStart(false);
+				}
+			});
+		}
+	}
+
+	public void forceTerminate() {
+		t.interrupt();
+		discordAPI.disconnect();
+		DPSUtils.log("Stop botting to prevent ban!");
 		Platform.runLater(new Runnable() {
 			@Override
 			public void run() {
@@ -87,6 +107,7 @@ public class DiscordConnection implements Runnable {
 				MyController.setStart(false);
 			}
 		});
+
 	}
 
 	public void start() {

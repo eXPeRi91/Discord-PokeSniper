@@ -12,17 +12,29 @@ public class AllJsonData {
 	private static VBox view;
 	private static ScrollPane ScrollForLog;
 	private static Integer amountToCatch;
+	private static Boolean pokeFarm;
+
 	
-	public AllJsonData(String token, ArrayList<Pokemon> list, String amount) {
+	public AllJsonData(String token, ArrayList<Pokemon> list, String amount, Boolean autoFarm) {
 		AllJsonData.token = token;
 		AllJsonData.pokelist = list;
 		AllJsonData.amountToCatch = Integer.parseInt(amount);
+		AllJsonData.pokeFarm = autoFarm;
 	}
 
 	public static String getToken() {
 		return token;
 	}
 
+	public static Boolean getPokeFarm() {
+		return AllJsonData.pokeFarm;
+	}
+
+	public static void setPokeFarm(Boolean pokeFarm) {
+		AllJsonData.pokeFarm = pokeFarm;
+		JSONHandler.UpdatePokeList();
+	}
+	
 	public static void setToken(String token) {
 		AllJsonData.token = token;
 		JSONHandler.UpdatePokeList();

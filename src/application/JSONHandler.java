@@ -21,6 +21,8 @@ public class JSONHandler {
 			JSONObject jsonObject = (JSONObject) jsonParser.parse(reader);
 			String token = (String) jsonObject.get("token");
 			String amount = (String) jsonObject.get("amountToCatch");
+			String farm = (String) jsonObject.get("autoFarm");
+			Boolean autoFarm = farm == null ? true : Boolean.parseBoolean(farm);
 			JSONArray pokemon = (JSONArray) jsonObject.get("pokemons");
 			@SuppressWarnings("rawtypes")
 			Iterator i = pokemon.iterator();
@@ -45,7 +47,7 @@ public class JSONHandler {
 			}
 			if (amount == null)
 				amount = "921";
-			new AllJsonData(token, poke, amount);
+			new AllJsonData(token, poke, amount, autoFarm);
 
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -58,6 +60,7 @@ public class JSONHandler {
 			String str = "{\n";
 			str += "\t\"token\": \"" + AllJsonData.getToken() + "\", \n";
 			str += "\t\"amountToCatch\": \"" + AllJsonData.getAmountToCatch() + "\", \n";
+			str += "\t\"autoFarm\": \"" + AllJsonData.getPokeFarm() + "\", \n";
 			str += "\t\"pokemons\": [\n";
 			for (Pokemon pokemon : AllJsonData.getPokelist()) {
 				str += pokemon.toJSON();
