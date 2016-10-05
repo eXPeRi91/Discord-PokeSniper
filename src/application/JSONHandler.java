@@ -52,7 +52,7 @@ public class JSONHandler {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-	}
+	} 
 
 	public static void UpdatePokeList() {
 		try {
