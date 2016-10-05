@@ -14,6 +14,7 @@ import javafx.application.Platform;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import resources.DPSUtils;
+import resources.MyColors;
 import resources.PokemonChatHandler;
 import resources.SnipeCache;
 
@@ -35,7 +36,7 @@ public class DiscordConnection implements Runnable {
 		discordAPI = Javacord.getApi(token, false);
 		discordAPI.connectBlocking();
 		if (discordAPI.getYourself() == null) {
-			DPSUtils.log("Could not connect to discord via the given token, try again!");
+			DPSUtils.log("Could not connect to discord via the given token, try again!", MyColors.hardError);
 			Platform.runLater(new Runnable() {
 				@Override
 				public void run() {
@@ -77,8 +78,8 @@ public class DiscordConnection implements Runnable {
 	public void terminate() {
 		t.interrupt();
 		discordAPI.disconnect();
-		DPSUtils.log("Autosniper Finished...");
-		DPSUtils.log("End Discord session.");
+		DPSUtils.log("Autosniper Finished...", MyColors.error);
+		DPSUtils.log("End Discord session.", MyColors.error);
 		if (!AllJsonData.getPokeFarm()) {
 			Platform.runLater(new Runnable() {
 				@Override
@@ -96,7 +97,7 @@ public class DiscordConnection implements Runnable {
 	public void forceTerminate() {
 		t.interrupt();
 		discordAPI.disconnect();
-		DPSUtils.log("Stop botting to prevent ban!");
+		DPSUtils.log("Stop botting to prevent ban!", MyColors.hardError);
 		Platform.runLater(new Runnable() {
 			@Override
 			public void run() {

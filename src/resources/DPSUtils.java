@@ -23,7 +23,7 @@ import threads.DiscordConnection;
 public class DPSUtils {
 	private static String currentDirectory = null;
 	private static DiscordConnection disCon;
-	private static String version = "v1.4.1";
+	private static String version = "v1.4.2";
 	private static Boolean running = false;
 	private static Integer pokeCatchCounter = 0;
 	private static Label fullCounter;
@@ -37,10 +37,14 @@ public class DPSUtils {
 	}
 
 	public static void log(String logMessage) {
+		log(logMessage, MyColors.defaultMessage);
+	}
+
+	public static void log(String logMessage, String color) {
 		LocalTime time = LocalTime.now();
 		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm:ss");
 		System.out.println("[" + time.format(formatter) + "] " + logMessage);
-		DPSUtils.updateLogArea("[" + time.format(formatter) + "] " + logMessage);
+		DPSUtils.updateLogArea("[" + time.format(formatter) + "] " + logMessage, color);
 	}
 
 	public static String getToken() {
@@ -51,12 +55,14 @@ public class DPSUtils {
 		JSONHandler.PokeList();
 	}
 
-	public static void updateLogArea(String str) {
+	public static void updateLogArea(String str, String color) {
 		Label lab = new Label(str);
 		lab.setMinWidth(Region.USE_PREF_SIZE);
 		RowConstraints row = new RowConstraints();
 		row.setMaxHeight(30);
 		row.setMinHeight(30);
+		lab.setStyle("-fx-text-fill: "+color+"; -fx-font-weight: bold;");
+
 		Platform.runLater(new Runnable() {
 			@Override
 			public void run() {
@@ -95,15 +101,15 @@ public class DPSUtils {
 	}
 
 	public static void stopBot(String str) {
-		DPSUtils.log("Stoping Bot, Reason: " + str);
+		DPSUtils.log("Stoping Bot, Reason: " + str, MyColors.error);
 		disCon.terminate();
 	}
 
 	public static void forceStopBot(String str) {
-		DPSUtils.log("Stoping Bot, Reason: " + str);
+		DPSUtils.log("Stoping Bot, Reason: " + str, MyColors.hardError);
 		disCon.forceTerminate();
 	}
-	
+
 	public static void setCurrentDirectoryLocation() {
 		try {
 			CodeSource codeSource = Main.class.getProtectionDomain().getCodeSource();

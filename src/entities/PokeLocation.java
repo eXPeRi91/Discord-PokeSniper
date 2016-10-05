@@ -4,6 +4,8 @@ import resources.DPSUtils;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import org.apache.commons.lang.StringUtils;
+
 public class PokeLocation {
 
 	private Pokemon pokemonType;
@@ -41,13 +43,11 @@ public class PokeLocation {
 	}
 
 	public static PokeLocation parsePokemonNotificationString(String notificationString) {
-		// if (StringUtils.containsIgnoreCase(notificationString, "DSP"))
-		// return null;
+		if (StringUtils.containsIgnoreCase(notificationString, "DSP")
+				|| StringUtils.containsIgnoreCase(notificationString, "fake"))
+			return null;
 		// Find Lat/Long from string
-		Pattern pattern = Pattern.compile("(-?\\d+\\.\\d{5,})"); // at least 5
-																	// digits
-																	// after the
-																	// dot.
+		Pattern pattern = Pattern.compile("(-?\\d+\\.\\d{4,})");
 		Matcher matcher = pattern.matcher(notificationString);
 		String[] locations = new String[2];
 		int doublesFound = 0;
@@ -91,6 +91,7 @@ public class PokeLocation {
 	}
 
 	private static Boolean CheckPokemonInString(String notificationString, String pokemonName) {
+		notificationString = notificationString + " ";
 		char[] pokeName = pokemonName.toLowerCase().toCharArray();
 		char[] string = notificationString.toLowerCase().toCharArray();
 		boolean flag = false;

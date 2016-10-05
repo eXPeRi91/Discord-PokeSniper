@@ -6,6 +6,7 @@ import java.util.Random;
 
 import entities.PokeLocation;
 import resources.DPSUtils;
+import resources.MyColors;
 import resources.SnipeCache;
 import resources.SyncPipe;
 
@@ -35,7 +36,7 @@ public class CatchMe extends Thread {
 		double longitude = pokeLocation.getLongitude();
 		String pokemonName = pokeLocation.getPokemonType().getDisplayName();
 
-		DPSUtils.log("Sniping " + pokemonName + " @ " + latitude + ", " + longitude + ".");
+		DPSUtils.log("Sniping " + pokemonName + " @ " + latitude + ", " + longitude + ".", MyColors.caught);
 
 		String[] command = { "cmd", };
 		Process proc = null;

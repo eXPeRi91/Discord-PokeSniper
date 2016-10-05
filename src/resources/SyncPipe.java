@@ -38,12 +38,12 @@ public class SyncPipe implements Runnable {
 	private void analyzeString(String str) {
 		Pokemon temp = checkWhatWasCaught(str);
 		if (str.contains("There is no"))
-			DPSUtils.log("The Pokemon " + temp.getDisplayName() + " was not found at the location.");
+			DPSUtils.log("The Pokemon " + temp.getDisplayName() + " was not found at the location.", MyColors.notFound);
 		else if (str.contains("We caught a")) {
 			temp.updateLableValue();
-			DPSUtils.log("The Pokemon " + temp.getDisplayName() + " was caught.");
+			DPSUtils.log("The Pokemon " + temp.getDisplayName() + " was caught.", MyColors.caught);
 		} else if (str.contains("got away.")) {
-			DPSUtils.log("The Pokemon " + temp.getDisplayName() + " got away.");
+			DPSUtils.log("The Pokemon " + temp.getDisplayName() + " got away.", MyColors.gotAway);
 		} else if (str.contains("We have") && str.contains("berries left")) {
 			Pattern p = Pattern.compile("\\d+");
 			Matcher m = p.matcher(str);
@@ -65,18 +65,20 @@ public class SyncPipe implements Runnable {
 		} else if (str.contains("Got into the fight without any Pokeballs")) {
 			flag = true;
 		} else if (str.contains("is not recognized as an internal or externa")) {
-			DPSUtils.log(" - Can not find Pokesniper2.exe file. ");
-			DPSUtils.log(" - did you put them in the same folder?");
+			DPSUtils.log(" - Can not find Pokesniper2.exe file. ", MyColors.hardError);
+			DPSUtils.log(" - did you put them in the same folder?", MyColors.hardError);
 			DPSUtils.stopBot("Can not catch pokemons with no Pokesniper2.exe file.");
 		} else if (str.contains("Could not load settings")) {
-			DPSUtils.log(" - Please check whether user.xml file is edited currectly.");
+			DPSUtils.log(" - Please check whether user.xml file is edited currectly.", MyColors.hardError);
 			DPSUtils.stopBot("Problem with user.xml file.");
 		} else if (str.contains("Please confirm that the PokemonGo servers are online before using")) {
-			DPSUtils.log(" - Please check whether user.xml file is edited currectly, or PokemonGo servers are online!");
+			DPSUtils.log(" - Please check whether user.xml file is edited currectly, or PokemonGo servers are online!",
+					MyColors.hardError);
 			DPSUtils.stopBot("Could not connect to Pokemon Go servers.");
 		} else if (str.contains("Next PokeStop is")) {
 			DPSUtils.setPokestopsRobed();
-			DPSUtils.log("Another Pokestop was robbed, total robbed: " + DPSUtils.getPokestopsRobed());
+			DPSUtils.log("Another Pokestop was robbed, total robbed: " + DPSUtils.getPokestopsRobed(),
+					MyColors.pokestopRobbed);
 		} else if (str.contains("Inventory is full! Will now walk back to the start and stop there")) {
 			Pattern pattern = Pattern.compile("((\\d+).?(\\d+)m)");
 			Matcher matcher = pattern.matcher(str);
@@ -89,8 +91,8 @@ public class SyncPipe implements Runnable {
 			DecimalFormat df = new DecimalFormat("####.####");
 			doublesFound = Double.parseDouble(df.format(doublesFound).replace(',', '.'));
 			Long timeWait = Math.round(doublesFound) + 1;
-			DPSUtils.log("Finished! waiting " + timeWait + " seconds to return to start point.");
-			DPSUtils.log("After returning home, bot will continue his job :) ");
+			DPSUtils.log("Finished! waiting " + timeWait + " seconds to return to start point.", MyColors.finishedRob);
+			DPSUtils.log("After returning home, bot will continue his job :) ", MyColors.finishedRob);
 			try {
 				Thread.sleep(timeWait * 1000);
 				DPSUtils.startBot();
@@ -98,14 +100,27 @@ public class SyncPipe implements Runnable {
 				e.printStackTrace();
 			}
 		}
+		if (str.contains(" - IV: ")) {
+			if (str.contains(" - IV: 100"))
+				DPSUtils.log("That pokemon was 100% IV!", MyColors.caught);
+			else {
+				Pattern pattern = Pattern.compile("IV: \\d+.\\d+");
+				Matcher matcher = pattern.matcher(str);
+				if (matcher.find()) {
+					String st = matcher.group();
+					st = st.replace("IV: ", "");
+					DPSUtils.log("That pokemon was " + st.substring(0,5) + "% IV!", MyColors.gotAway);
+				}
 
+			}
+		}
 		if (flag == true) {
 			DPSUtils.stopBot("No more Pokeballs left!");
 			if (AllJsonData.getPokeFarm()) {
 				if (DPSUtils.getPokestopsRobed() >= 1700) {
 					DPSUtils.forceStopBot("You've robbed " + DPSUtils.getPokestopsRobed() + " Pokestops.");
 				} else {
-					DPSUtils.log("Start farming pokeballs with Masterball bot.");
+					DPSUtils.log("Start farming pokeballs with Masterball bot.", MyColors.pokestopRobbed);
 					String[] command = { "cmd", };
 					Process proc = null;
 					try {

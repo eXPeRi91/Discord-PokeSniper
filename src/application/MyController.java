@@ -112,7 +112,6 @@ public class MyController implements Initializable {
 	}
 
 	public void initializePokemonList() throws InterruptedException {
-		Thread.sleep(1100);
 		int x = 0;
 		ArrayList<Pokemon> list = AllJsonData.getPokelist();
 		for (Pokemon poke : list) {
