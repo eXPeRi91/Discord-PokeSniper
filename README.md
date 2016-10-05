@@ -1,4 +1,4 @@
-# Discord PokeSniper v1.4.0
+# Discord PokeSniper v1.4.1
 <B>Discord PokeSniper</B> is a bot that based on the <B><i>Discord 100IV auto Sniper</i></B> of <B>CandyBuns</B> and inspired by it.
 
 Lots of the code of <B>CandyBuns</B> has been changed by me, and a lot more code has been added by me.
@@ -71,7 +71,13 @@ Masterball bot:<BR>
 ---------------------------------------------------------------
 
 <B><h1>CHANGES:</h1></B>
+Changes from v1.4.0 to 1.4.1:
 
+	* Fix a bug that caused some users to get a runtime error.
+	* Fix settings.json machamp showing twice.
+	* Add pokemon number next to his name.
+	* Fixing some more problems
+---------------------------------------------------------------
 Changes from v1.3.2 to 1.4.0:
 
 	* Fix some bugs.
