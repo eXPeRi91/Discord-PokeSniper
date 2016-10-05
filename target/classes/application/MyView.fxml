@@ -65,29 +65,25 @@
                               <Insets left="5.0" right="4.0" />
                            </padding>
                         </TextField>
-                        <AnchorPane layoutX="7.0" layoutY="40.0" opacity="0.2">
-                           <children>
-                              <Label layoutX="84.0" text="/" />
-                              <CheckBox fx:id="farmPokestops" disable="true" layoutY="38.0" mnemonicParsing="false" prefHeight="21.0" prefWidth="168.0" selected="true" text="Auto farm pokeballs" />
-                              <Button fx:id="MoreInfo1" alignment="CENTER" contentDisplay="CENTER" disable="true" graphicTextGap="0.0" layoutX="171.0" layoutY="37.0" mnemonicParsing="false" prefHeight="23.0" prefWidth="22.0" text="?" textOverrun="CLIP">
-                                 <font>
-                                    <Font name="System Bold" size="15.0" />
-                                 </font>
-                                 <opaqueInsets>
-                                    <Insets top="17.0" />
-                                 </opaqueInsets>
-                                 <cursor>
-                                    <Cursor fx:constant="HAND" />
-                                 </cursor>
-                                 <padding>
-                                    <Insets bottom="-1.0" left="-1.0" right="-1.0" top="-1.0" />
-                                 </padding>
-                                 <tooltip>
-                                    <Tooltip text="Auto start Masterball bot to farm pokestops" />
-                                 </tooltip>
-                              </Button>
-                           </children>
-                        </AnchorPane>
+                        <CheckBox fx:id="farmPokestops" layoutX="6.0" layoutY="78.0" mnemonicParsing="false" prefHeight="21.0" prefWidth="168.0" selected="true" text="Auto farm pokeballs" />
+                        <Button fx:id="MoreInfo1" alignment="CENTER" contentDisplay="CENTER" graphicTextGap="0.0" layoutX="178.0" layoutY="77.0" mnemonicParsing="false" prefHeight="23.0" prefWidth="22.0" text="?" textOverrun="CLIP">
+                           <font>
+                              <Font name="System Bold" size="15.0" />
+                           </font>
+                           <opaqueInsets>
+                              <Insets top="17.0" />
+                           </opaqueInsets>
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
+                           <padding>
+                              <Insets bottom="-1.0" left="-1.0" right="-1.0" top="-1.0" />
+                           </padding>
+                           <tooltip>
+                              <Tooltip text="Auto start Masterball bot to farm pokestops" />
+                           </tooltip>
+                        </Button>
+                        <Label layoutX="90.0" layoutY="44.0" text="/" AnchorPane.topAnchor="44.0" />
                      </children>
                   </AnchorPane>
                </bottom>
@@ -171,7 +167,7 @@
       </BorderPane>
       <AnchorPane prefHeight="39.0" prefWidth="38.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0">
          <children>
-            <Button fx:id="MoreInfo" defaultButton="true" mnemonicParsing="false" onAction="#showPopUp" prefHeight="36.0" prefWidth="33.0" rotate="31.6" style="-fx-background-radius: 25px;" text="?" textOverrun="CLIP" AnchorPane.bottomAnchor="3.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+            <Button fx:id="MoreInfo" defaultButton="true" mnemonicParsing="false" onAction="#showPopUp" prefHeight="36.0" prefWidth="33.0" rotate="22.6" style="-fx-background-radius: 25px;" text="?" textOverrun="CLIP" AnchorPane.bottomAnchor="3.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                <font>
                   <Font name="System Bold" size="15.0" />
                </font>
