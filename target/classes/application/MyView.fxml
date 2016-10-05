@@ -151,9 +151,9 @@
                            <center>
                               <AnchorPane prefHeight="46.0" prefWidth="434.0" BorderPane.alignment="CENTER">
                                  <children>
-                                    <ScrollPane fx:id="ScrollForLog" layoutX="56.0" layoutY="64.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0">
+                                    <ScrollPane fx:id="ScrollForLog" layoutX="56.0" layoutY="64.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefWidth="306.0" style="-fx-background: #666666;" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0">
                                        <content>
-                                          <VBox fx:id="LogArea" cacheShape="false" centerShape="false" depthTest="DISABLE" nodeOrientation="LEFT_TO_RIGHT" prefHeight="24.0" prefWidth="383.0" scaleShape="false" />
+                                          <VBox fx:id="LogArea" cacheShape="false" centerShape="false" depthTest="DISABLE" nodeOrientation="LEFT_TO_RIGHT" prefHeight="26.0" prefWidth="115.0" scaleShape="false" style="-fx-background-color: transparent;;" />
                                        </content>
                                     </ScrollPane>
                                  </children></AnchorPane>
