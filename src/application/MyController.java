@@ -4,6 +4,7 @@ import java.awt.Desktop;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
+
 import entities.AllJsonData;
 import entities.Pokemon;
 import javafx.beans.value.ChangeListener;
@@ -63,7 +64,8 @@ public class MyController implements Initializable {
 
 	public void resetCounterNow() {
 		for (Pokemon poke : AllJsonData.getPokelist()) {
-			poke.setAmount(0);
+			if (poke.getId() != null)
+				poke.setAmount(0);
 		}
 		pokeCounter.setText("0");
 	}
@@ -114,20 +116,22 @@ public class MyController implements Initializable {
 		int x = 0;
 		ArrayList<Pokemon> list = AllJsonData.getPokelist();
 		for (Pokemon poke : list) {
-			CheckBox checkBox = new CheckBox();
-			checkBox.setText(poke.getDisplayName());
-			checkBox.setSelected(poke.getCatchable());
-			checkBox.setId(poke.getId().toString());
-			checkBox.selectedProperty().addListener(new MyPokemonChangeListener<Boolean>(poke));
-			Label lable = new Label(poke.getAmount().toString());
-			poke.setLabel(lable);
-			poke.setCheckbox(checkBox);
-			RowConstraints row = new RowConstraints();
-			row.setMaxHeight(20);
-			row.setMinHeight(20);
-			PokeListGrid.getRowConstraints().add(row);
-			PokeListGrid.addRow(x, checkBox, lable);
-			x++;
+			if (poke.getId() != null) {
+				CheckBox checkBox = new CheckBox();
+				checkBox.setText(String.format("%03d", poke.getId()) +": " +poke.getDisplayName());
+				checkBox.setSelected(poke.getCatchable());
+				checkBox.setId(poke.getId().toString());
+				checkBox.selectedProperty().addListener(new MyPokemonChangeListener<Boolean>(poke));
+				Label lable = new Label(poke.getAmount().toString());
+				poke.setLabel(lable);
+				poke.setCheckbox(checkBox);
+				RowConstraints row = new RowConstraints();
+				row.setMaxHeight(20);
+				row.setMinHeight(20);
+				PokeListGrid.getRowConstraints().add(row);
+				PokeListGrid.addRow(x, checkBox, lable);
+				x++;
+			}
 		}
 
 		this.token.setText(AllJsonData.getToken());
@@ -152,8 +156,7 @@ public class MyController implements Initializable {
 		alert.setHeaderText("DiscordPokeSniper " + DPSUtils.getVersion());
 		alert.setContentText(
 				"This program was built by RebliNk17.\n\nIt is based on DiscordSniper of CandyBuns, PokeSniper2 and Masterball bot.\n\n"
-						+ "All of them are combined together so you can snipe all night long ;)\n\n" 
-						+ "Enjoy!\n\n"
+						+ "All of them are combined together so you can snipe all night long ;)\n\n" + "Enjoy!\n\n"
 						+ "If you can afford, please consider donation. Thank you :)");
 		alert.showAndWait();
 	}
@@ -172,13 +175,15 @@ public class MyController implements Initializable {
 
 	public void selectAllpokemons() {
 		for (Pokemon poke : AllJsonData.getPokelist()) {
-			poke.getCheckbox().setSelected(true);
+			if (poke.getId() != null)
+				poke.getCheckbox().setSelected(true);
 		}
 	}
 
 	public void deSelectAllPokemons() {
 		for (Pokemon poke : AllJsonData.getPokelist()) {
-			poke.getCheckbox().setSelected(false);
+			if (poke.getId() != null)
+				poke.getCheckbox().setSelected(false);
 		}
 	}
 

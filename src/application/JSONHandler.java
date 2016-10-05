@@ -3,7 +3,10 @@ package application;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Iterator;
+import java.util.Map;
+
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
@@ -12,8 +15,10 @@ import entities.Pokemon;
 import resources.DPSUtils;
 
 public class JSONHandler {
-
+	
+	@SuppressWarnings("rawtypes")
 	public static void PokeList() {
+		HashMap<String, Pokemon> pokehash = new HashMap<>();
 		ArrayList<Pokemon> poke = new ArrayList<>();
 		try {
 			FileReader reader = new FileReader(DPSUtils.getCurrentDirectory() + "/settings.json");
@@ -24,7 +29,6 @@ public class JSONHandler {
 			String farm = (String) jsonObject.get("autoFarm");
 			Boolean autoFarm = farm == null ? true : Boolean.parseBoolean(farm);
 			JSONArray pokemon = (JSONArray) jsonObject.get("pokemons");
-			@SuppressWarnings("rawtypes")
 			Iterator i = pokemon.iterator();
 			boolean start = false;
 			while (i.hasNext()) {
@@ -39,12 +43,30 @@ public class JSONHandler {
 					if(start) {
 						number = number-1;
 					}
-					poke.add(new Pokemon(number, pokeName, (Boolean) innerObj.get("catch"),
-							(String) innerObj.get("displayName"), (String) innerObj.get("amount")));
+					String checkName = pokeName;
+					if(number == 29)
+						checkName = "Nidoran (F)";
+					if(number == 32)
+						checkName = "Nidoran (M)";
+					if(number == 84)
+						checkName = "Farfetch'd";
+					if((String) innerObj.get("displayName") == null)
+						checkName = pokeName;
+					pokehash.put(checkName, new Pokemon(number, pokeName, (Boolean) innerObj.get("catch"),
+							checkName.equals(pokeName) ? null : checkName, (String) innerObj.get("amount")));
 					if (innerObj.get("amount") != null)
 						DPSUtils.setPokeCatchCounter(Integer.parseInt((String) innerObj.get("amount")));
 				}
 			}
+		    Iterator it = pokehash.entrySet().iterator();
+		    for(int x=0; x<=pokehash.size(); x++) {
+		    	poke.add(new Pokemon());
+		    }
+		    while (it.hasNext()) {
+		    	Map.Entry pair = (Map.Entry)it.next();
+		    	poke.get(((Pokemon) pair.getValue()).getId()).setPokemon((Pokemon) pair.getValue());
+		    	it.remove();
+		    }
 			if (amount == null)
 				amount = "921";
 			new AllJsonData(token, poke, amount, autoFarm);
@@ -52,7 +74,7 @@ public class JSONHandler {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-	} 
+	}
 
 	public static void UpdatePokeList() {
 		try {
@@ -63,6 +85,7 @@ public class JSONHandler {
 			str += "\t\"autoFarm\": \"" + AllJsonData.getPokeFarm() + "\", \n";
 			str += "\t\"pokemons\": [\n";
 			for (Pokemon pokemon : AllJsonData.getPokelist()) {
+				if(pokemon.getId() != null)
 				str += pokemon.toJSON();
 			}
 			str += "\t]\n";

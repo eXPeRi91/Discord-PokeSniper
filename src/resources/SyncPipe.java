@@ -9,7 +9,9 @@ import java.io.PrintWriter;
 import java.text.DecimalFormat;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+
 import org.apache.commons.lang.StringUtils;
+
 import entities.AllJsonData;
 import entities.Pokemon;
 
@@ -73,15 +75,15 @@ public class SyncPipe implements Runnable {
 			DPSUtils.log(" - Please check whether user.xml file is edited currectly, or PokemonGo servers are online!");
 			DPSUtils.stopBot("Could not connect to Pokemon Go servers.");
 		} else if (str.contains("Next PokeStop is")) {
-			DPSUtils.log("Another Pokestop was robbed, total robbed: "+ DPSUtils.getPokestopsRobed());
 			DPSUtils.setPokestopsRobed();
+			DPSUtils.log("Another Pokestop was robbed, total robbed: " + DPSUtils.getPokestopsRobed());
 		} else if (str.contains("Inventory is full! Will now walk back to the start and stop there")) {
 			Pattern pattern = Pattern.compile("((\\d+).?(\\d+)m)");
 			Matcher matcher = pattern.matcher(str);
 			Double doublesFound = 0.0;
 			if (matcher.find()) {
 				String st = matcher.group(1);
-				doublesFound = Double.parseDouble(st.substring(0, st.length() - 1));
+				doublesFound = Double.parseDouble(st.replace(',', '.').substring(0, st.length() - 1));
 			}
 			doublesFound /= 25;
 			DecimalFormat df = new DecimalFormat("####.####");
@@ -130,10 +132,12 @@ public class SyncPipe implements Runnable {
 	private Pokemon checkWhatWasCaught(String str) {
 		Pokemon pokemonType = null;
 		for (Pokemon type : AllJsonData.getPokelist()) {
-			if (StringUtils.containsIgnoreCase(str, type.getName())
-					|| StringUtils.containsIgnoreCase(str, type.getDisplayName())) {
-				pokemonType = type;
-				break;
+			if (type.getId() != null) {
+				if (StringUtils.containsIgnoreCase(str, type.getName())
+						|| StringUtils.containsIgnoreCase(str, type.getDisplayName())) {
+					pokemonType = type;
+					break;
+				}
 			}
 		}
 		return pokemonType;

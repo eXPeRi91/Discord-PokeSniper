@@ -1,6 +1,7 @@
 package entities;
 
 import java.util.ArrayList;
+
 import application.JSONHandler;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.VBox;

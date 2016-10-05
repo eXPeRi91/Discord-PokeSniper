@@ -23,7 +23,7 @@ import threads.DiscordConnection;
 public class DPSUtils {
 	private static String currentDirectory = null;
 	private static DiscordConnection disCon;
-	private static String version = "v1.4.0";
+	private static String version = "v1.4.1";
 	private static Boolean running = false;
 	private static Integer pokeCatchCounter = 0;
 	private static Label fullCounter;
@@ -46,7 +46,7 @@ public class DPSUtils {
 	public static String getToken() {
 		return AllJsonData.getToken();
 	}
- 
+
 	public static void loadSnipingPokemon() {
 		JSONHandler.PokeList();
 	}

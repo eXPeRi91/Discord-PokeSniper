@@ -32,6 +32,10 @@ public class Pokemon {
 			this.setAmount(0);
 	}
 
+	public Pokemon() {
+		// TODO Auto-generated constructor stub
+	}
+
 	public Integer getId() {
 		return id;
 	}
@@ -126,5 +130,15 @@ public class Pokemon {
 
 	public void setCheckbox(CheckBox checkbox) {
 		this.checkbox = checkbox;
+	}
+
+	public void setPokemon(Pokemon value) {
+		this.amount = value.amount;
+		this.catchable = value.catchable;
+		this.id = value.id;
+		this.name = value.name;
+		this.displayName = value.displayName;
+		this.label = value.label;
+		this.checkbox = value.checkbox;
 	}
 }

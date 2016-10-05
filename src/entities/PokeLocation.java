@@ -5,6 +5,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class PokeLocation {
+
 	private Pokemon pokemonType;
 	private double longitude;
 	private double latitude;
@@ -40,10 +41,13 @@ public class PokeLocation {
 	}
 
 	public static PokeLocation parsePokemonNotificationString(String notificationString) {
-		//if (StringUtils.containsIgnoreCase(notificationString, "DSP"))
-		//	return null;
+		// if (StringUtils.containsIgnoreCase(notificationString, "DSP"))
+		// return null;
 		// Find Lat/Long from string
-		Pattern pattern = Pattern.compile("(-?\\d+\\.\\d{5,})"); // at least 5 digits after the dot.
+		Pattern pattern = Pattern.compile("(-?\\d+\\.\\d{5,})"); // at least 5
+																	// digits
+																	// after the
+																	// dot.
 		Matcher matcher = pattern.matcher(notificationString);
 		String[] locations = new String[2];
 		int doublesFound = 0;
@@ -73,10 +77,12 @@ public class PokeLocation {
 		// Find which pokemon we're talking about
 		Pokemon pokemonType = null;
 		for (Pokemon type : AllJsonData.getPokelist()) {
-			if(CheckPokemonInString(notificationString, type.getName())) {
-				if (type.getCatchable())
-					pokemonType = type;
-				break;
+			if (type.getId() != null) {
+				if (CheckPokemonInString(notificationString, type.getName())) {
+					if (type.getCatchable())
+						pokemonType = type;
+					break;
+				}
 			}
 		}
 		if (pokemonType == null)
@@ -88,18 +94,18 @@ public class PokeLocation {
 		char[] pokeName = pokemonName.toLowerCase().toCharArray();
 		char[] string = notificationString.toLowerCase().toCharArray();
 		boolean flag = false;
-		for(int i = 0; i< string.length-pokeName.length; i++) {
+		for (int i = 0; i < string.length - pokeName.length; i++) {
 			flag = false;
-			int j=0;
-			for(j=0; j<pokeName.length; j++) {
-				if(pokeName[j] == string[i+j]) {
+			int j = 0;
+			for (j = 0; j < pokeName.length; j++) {
+				if (pokeName[j] == string[i + j]) {
 					flag = true;
 				} else {
 					flag = false;
 					break;
 				}
 			}
-			if(j == pokeName.length && flag)
+			if (j == pokeName.length && flag)
 				return true;
 		}
 		return false;

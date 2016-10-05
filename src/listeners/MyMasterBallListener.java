@@ -8,7 +8,10 @@ import javafx.scene.control.CheckBox;
 
 public class MyMasterBallListener<T> implements ChangeListener<Boolean> {
 
+//	private CheckBox farm;
+
 	public MyMasterBallListener(CheckBox pokeFarm) {
+	//	this.farm = pokeFarm;
 	}
 
 	@Override
