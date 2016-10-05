@@ -1,4 +1,4 @@
-# Discord PokeSniper v1.3.2
+# Discord PokeSniper v1.4.0
 <B>Discord PokeSniper</B> is a bot that based on the <B><i>Discord 100IV auto Sniper</i></B> of <B>CandyBuns</B> and inspired by it.
 
 Lots of the code of <B>CandyBuns</B> has been changed by me, and a lot more code has been added by me.
@@ -29,16 +29,33 @@ Enjoy :)
 
 4) run discordPokesniper.jar or Start_DiscordPokeSniper.bat.
 
-the Start_DiscordPokeSniper.bat if for debug only.
+	the Start_DiscordPokeSniper.bat if for debug only.
 
-you don't have to use it.
+	you don't have to use it.
 
 5) post your token of discord in the gui window and click the button.
 
 
+<b><h1>If you want to use Masterball bot do the following:</h1></b>
+
+	1) Download Masterball bot
+	2) Create new folder in the folder where discordPokesniper.jar is and name it "masterball"
+	3) Extract masterball bot into the new folder
+	4) Set the user.xml file of masterball with same details of the pokesniper2 file.
+	5) Run the Discord pokesniper 1.4+ and start botting.
+
 Optional:
 
 you can select which pokemons to catch. (Default: catch all pokemon)
+
+---------------------------------------------------------------
+<b><h1>Downloads:</h1></b>
+
+Pokesniper2:<BR>
+	http://www.ownedcore.com/forums/pokemon-go/pokemon-go-hacks-cheats/566079-pokesniper2-pokemon-sniper-catch-any-pokemon-no-matter-where-you.html <BR>
+Masterball bot:<BR>
+	http://www.ownedcore.com/forums/pokemon-go/pokemon-go-hacks-cheats/568101-masterball-pokestop-bot-farm-just-pokestops-items.html
+
 
 ---------------------------------------------------------------
 
@@ -54,9 +71,19 @@ you can select which pokemons to catch. (Default: catch all pokemon)
 ---------------------------------------------------------------
 
 <B><h1>CHANGES:</h1></B>
+
+Changes from v1.3.2 to 1.4.0:
+
+	* Fix some bugs.
+	* Add support to run Masterball bot to farm pokestops and get pokeballs
+	* Limit pokestops robs to 1700.
+	* Fix a little problem in GUI
+---------------------------------------------------------------
+
 Changes from v1.3.1 to 1.3.2:
 
 	* Fix problem that caused many people not receiving messages from Discord
+---------------------------------------------------------------
 
 Changes from v1.3.0 to 1.3.1:
 
